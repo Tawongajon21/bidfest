@@ -54,10 +54,10 @@ return formattedDate
 }
 console.log(currentAuctions);
 const localTime=(date)=>{
-  let newDate= new Date(date);
-  let utcHours=String(newDate.getUTCHours()).padStart(2,'0');
-  let utcMinutes=String(newDate.getUTCMinutes()).padStart(2,'0')
-  let time = `${utcHours}:${utcMinutes}`
+  const newDate= new Date(date);
+  const utcHours=String(newDate.getUTCHours()).padStart(2,'0');
+  const utcMinutes=String(newDate.getUTCMinutes()).padStart(2,'0')
+  const time = `${utcHours}:${utcMinutes}`
   return time
 }
   return (
