@@ -1,5 +1,6 @@
 import React from 'react'
-import AuctionCard from "../../helpers/components/auctionCard"
+
+import AuctionCard from "../../components/auctionCard"
 function Page() {
   return (
     <>
