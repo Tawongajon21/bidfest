@@ -1,5 +1,5 @@
 import React from 'react'
-import useCountdown from './useCountdown'
+
 import { useEffect,useState } from 'react'
 function AuctionTimer({openTime,closeTime}) {
 const [timeLeft, settimeLeft] = useState("");
