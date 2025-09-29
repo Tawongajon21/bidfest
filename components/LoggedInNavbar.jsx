@@ -1,0 +1,643 @@
+
+'use client'
+import React from 'react'
+import Logo from "../public/images/logo.svg"
+import Image from 'next/image'
+import Link from 'next/link'
+import {AiOutlineMenu} from "react-icons/ai"
+import {MdClose} from "react-icons/md"
+import useSession from "@/middleware/useSession"
+import { useState,useEffect,useRef } from 'react'
+import {FaSearch,FaBell,FaGavel,FaArrowDown} from "react-icons/fa"
+import {FiX} from "react-icons/fi"
+import {HiChevronDown} from "react-icons/hi"
+import  {io}  from 'socket.io-client'
+import {IoNotificationsOutline,IoSearchOutline} from "react-icons/io5"
+import { serverUrl } from '@/urls'
+import useSocket from "../hooks/useSocket"
+import CarBg from "@/public/images/car-bg.png";
+import  {fetchNotifications}  from "../helpers/fetchNotifications";
+import {markNotificationRead} from "../helpers/markAsRead"
+import {imageServerUrl} from "@/urls"
+import { useQuery, useQueryClient,useMutation } from "@tanstack/react-query";
+import timeAgo from "@/helpers/timeAgo"
+import EmptyNotification from "@/public/images/empty-notifications.png"
+import useNotifications from "@/helpers/useUnreadNotifications"
+export default function LoggedInNavbar({session,clearSession}) {
+  
+    let serverData =  useNotifications();
+   
+    let queryClient=useQueryClient();
+    let id="id"
+
+    const {data,isLoading,error}=useQuery({
+        queryKey:["summary-notifications"],
+        queryFn:fetchNotifications,
+        enabled:!!session&&!!id,
+        refetchOnWindowFocus:false,
+        refetchOnMount:false,
+      
+    })
+
+  let notifications= data?.data;
+console.log(notifications);
+
+const socketRef=useRef(null);
+
+const [socket, setsocket] = useState(null)
+const [message, setmessage] = useState("")
+
+    const [selected, setselected] = useState('')
+    const [personalBar, setpersonalBar] = useState(false)
+
+    const [toggleDropdown, settoggleDropdown] = useState(false)
+    const [isOpen, setisOpen] = useState(false)
+    const [socketIo, setsocketIo] = useState(null)
+    let name= session?.payload.name
+    let surname=session?.payload.surname;
+    let userId= session?.payload._id
+  
+    const handleLogout=()=>{
+    
+        clearSession()
+    }
+   
+    const [audioAllowed, setaudioAllowed] = useState(false)
+    const [showNotifications, setshowNotifications] = useState(false)
+    useEffect(() => {
+        if(session){
+            const socketIo=io(serverUrl,{
+                auth:{
+                    token:localStorage.getItem("signature")
+                }
+            }); 
+          
+        setsocket(socketIo)
+    const audio=new Audio("/audio/beep.opus")
+    
+    
+    socketIo.on("connection",(socket)=>{
+        console.log(userId);
+        console.log(socket);
+        
+        
+    
+    
+    
+     
+    })
+    
+    socketIo.emit("add-user",userId);
+    socketIo.on("newNotification",(data)=>{
+     //   console.log("Received Notification", data);
+       console.log("hello there");
+        
+    })
+    socketIo.on("notification",(data)=>{
+    
+        /*
+        audio.play().catch((err)=>{
+            console.error("Audio failed to play", err)
+            
+        })
+        */
+    
+    
+    queryClient.setQueryData(["notifications"],(oldData)=>{
+        if (!oldData||!oldData.pages) {
+            return {
+                pages:[[data]],
+                pageParams:[undefined]
+            }
+        }
+    return {
+        ...oldData,
+        pages:[
+            [data,...oldData.pages[0]],
+            ...oldData.pages.slice(1)
+        ]
+    }
+    
+    })
+    
+    
+    })
+    
+        }
+
+
+  
+    }, [queryClient])
+const toggleNotifications=()=>{
+    setshowNotifications(!showNotifications)
+}
+  
+let unreadNotifications=serverData.data;
+const {mutate:markRead}=useMutation(markNotificationRead,{
+    onSuccess:()=>{
+        queryClient.invalidateQueries("notifications")
+    }
+})
+
+
+
+  return (
+
+    <div style={{
+        backgroundColor:"#F9FAFB"
+    }}>
+   <header className=' py-4' >
+    <nav className='container flex justify-between items-center w-[92%] mx-auto'>
+<div className="cursor-pointer" > 
+<Link href="/">
+<h2 style={{
+   color:"#4f46e5" 
+}} className="text-2xl font-bold">
+    BidFirst
+</h2>
+</Link>
+
+</div>
+{
+    /**Mobile Navbar Begins Here */
+}
+{
+    session && <div className="md:hidden flex justify-evenly   rounded-full align-middle content-center items-center gap-4" >
+
+ <Link href="/searchpage" className=''>
+ <IoSearchOutline  size ={20}/> 
+
+ </Link>
+
+
+
+ <div className='relative group'>
+ <IoNotificationsOutline onClick={toggleNotifications}  size ={20}/> 
+ {
+    unreadNotifications >0 &&  <span className='absolute -top-4 -right-4 bg-red-500 text-white rounded-full px-[8px] py-[4px] text-xs'>
+    {unreadNotifications}
+     </span>
+ }
+
+ {
+      showNotifications &&(
+    
+        <div style={{top:"4rem",width:80+"%"}} className={`fixed right-5 top-0  z-9999999999  max-h-screen overflow-y-auto bg-white shadow-lg md:w-[100%] lg:w-[100%] xl:w-[100%] ${showNotifications? "block" : "hidden" } transition-all duration-300 ease-in-out ${showNotifications? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'}`}>
+<div className='flex justify-between items-center p-4 border-b border-gray-200'>
+<h2 className="text-lg font-bold mt-2">Notifications</h2>
+<button onClick={toggleNotifications} className='cursor-pointer'>
+ <FiX size={20}  className='text-red-500'/>
+</button>
+</div>
+
+{
+unreadNotifications === 0 ? <div className='pl-4 mb-4'>
+ <h2>
+    You have no new notifications at the moment,please check again later
+ </h2>
+ <div className='flex justify-center'>
+ <Image src={EmptyNotification} width={90} height={90} alt='Empty Notification Bar'/>
+ </div>
+
+</div> : 
+   notifications?.slice(0,3).map((item)=>(
+<ul>
+<li onClick={()=>{
+    markRead(item._id)
+}} className={`
+
+pl-3 flex align-middle items-center w-[100%] mb-3  cursor-pointer 
+${item.read===true ? "bg-white" : "bg-blue-100"}
+
+`}>
+    {
+    item?.lot  && <div>
+{
+  item.lot.lotImages?.[0] &&
+
+  
+    item.lot.lotImages?.map((item,index)=>{
+        console.log(item);
+        if (index===0) {
+            return <Image key={index} src={`${serverUrl}/${item.newPath}`} width={250} height={400} alt='Notification Image'/>
+        }
+  
+    })
+    
+    
+
+}
+    
+    </div>
+    }
+
+<div>
+<p className='text-sm pl-2 text-gray-500 mt-2'>
+{item?.message} <Link className='text-blue-800' href="/personalbids">
+View
+</Link>
+    </p>  
+    <p className='text-sm mt-2 pl-2 text-gray-500'>
+        {
+          timeAgo(item?.createdAt)
+        }
+    </p>
+
+</div>
+<div>
+
+</div>
+
+</li>
+       
+</ul>
+    ))
+}
+
+
+
+   <ul className='mb-3'>
+    <li className='flex justify-center '>
+        <Link href="/notifications" className='text-blue-700'>
+        See all notifications
+        </Link>
+    </li>
+    </ul>
+
+
+
+        </div>
+   
+   
+    )
+}
+ </div>
+
+
+
+<p>
+
+</p>
+    <p className='relative group'>
+    <button onClick={()=>settoggleDropdown(!toggleDropdown)} className='flex text-lg gap-2 align-middle items-center cursor-pointer ' >
+<FaGavel size ={20}/> 
+
+    <HiChevronDown size ={20}/> 
+
+
+
+</button>
+{
+    toggleDropdown &&    <div className='absolute mt-2   grid justify-center w-40 px-6 shadow-lg bg-white gap-3 left-0 right-0 z-100 '>
+    <Link href="/personalbids" onClick={()=>{
+      settoggleDropdown(!toggleDropdown)
+        
+    }} className='mt-2'>
+        Your Bids
+    </Link>
+    <Link href="/upcomingauctions"  onClick={()=>{
+      settoggleDropdown(!toggleDropdown)
+        
+    }}   className='mt-2'>
+    Upcoming Auctions
+    </Link>
+    <Link onClick={()=>{
+      settoggleDropdown(!toggleDropdown)
+        
+    }} href="/liveauctions" className='mt-2 mb-4'>
+    Live Auctions
+    </Link>
+  
+    <Link onClick={()=>{
+      settoggleDropdown(!toggleDropdown)
+        
+    }} href="/onsiteauctions" className='mt-2 mb-4'>
+   Onsite Auctions
+    </Link>
+  
+    <Link onClick={()=>{
+      settoggleDropdown(!toggleDropdown)
+        
+    }} href="/onlineauctions" className='mt-2 mb-4'>
+    Online Auctions
+    </Link>
+  
+</div>
+    
+  
+}
+    </p>
+
+
+
+<button onClick={()=>setpersonalBar(!personalBar)} className='flex text-lg gap-3 align-middle items-center cursor-pointer z-100' >
+
+<p style={{
+    backgroundColor:"#4f46e5",
+    borderColor:"#4f46e5"
+}} className='w-12 h-12 rounded-full  text-white flex items-center justify-center  uppercase z-100' >
+    <span>
+    {name[0]}{surname[0]}
+    </span>
+  
+
+
+
+</p>
+{
+   personalBar && <div className='absolute top-16 grid justify-center w-40 px-3 shadow-lg bg-white gap-3  right-0 z-100 '>
+
+  <button onClick={
+    ()=>handleLogout()
+ 
+    
+    } className='mt-2 cursor-pointer z-100'>
+        Logout
+    </button>
+
+
+    <Link href="/" onClick={()=>{
+        setpersonalBar(!personalBar)
+    }} className='mt-2'>
+ Contact Us
+    </Link>
+
+  
+</div>
+}
+</button>
+</div>
+}
+
+
+{
+    /**PC View  */
+}
+
+
+{
+    session &&  <ul className="hidden  md:flex justify-center items-center content-center gap-7">
+    <li >
+<Link className='flex text-lg gap-3 align-middle items-center text-gray-900' href="/searchpage">
+<IoSearchOutline size ={20}/> 
+    <b className='text-gray-900'>
+  Search
+    </b>
+
+</Link>
+    </li>
+    <li className='relative group'>
+<div className='flex text-lg gap-1.5 align-middle items-center cursor-pointer' onClick={toggleNotifications} >
+<IoNotificationsOutline size ={20}/> 
+<div className='flex  align-bottom'>
+<b className=' text-gray-900'>
+    Notifications
+    </b>
+
+</div>
+
+{
+unreadNotifications > 0 &&  <div style={{
+
+    borderRadius:"50%",
+    marginTop:"-1.4rem",
+    marginLeft:"-0.1rem"
+}} className='border-2 border-red-500  bg-red-500 text-white py-0.5 px-2 text-sm'>
+    {unreadNotifications}
+</div>
+}
+   
+
+
+
+</div>
+
+{
+      showNotifications &&(
+    
+        <div style={{top:"4rem",width:"650px"}} className={`fixed top-0 right-20 z-50  max-h-screen overflow-y-auto bg-white shadow-lg md:w-1/3 lg:w-1/4 xl:w-1/5 ${showNotifications? "block" : "hidden" } transition-all duration-300 ease-in-out ${showNotifications? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'}`}>
+<div className='flex justify-between items-center p-4 border-b border-gray-200'>
+<h2 className="text-lg font-bold mt-2">Notifications</h2>
+<button onClick={toggleNotifications} className='cursor-pointer'>
+ <FiX size={20}  className='text-red-600'/>
+</button>
+</div>
+{
+unreadNotifications === 0 ? <div className='pl-4 mb-4'>
+<h2 className='mb-2'>
+   You have no new notifications at the moment,please check again later
+</h2>
+<div className='flex justify-center'>
+<Image src={EmptyNotification} width={120} height={120} alt='Empty Notification Bar'/>
+</div>
+
+</div> : 
+
+    notifications?.slice(0,3).map((item)=>(
+<ul>
+<li onClick={()=>{
+    markRead(item._id)
+}} className={`pl-3 flex align-middle items-center w-[100%] mb-3  cursor-pointer ${item.read=== true ?  "bg-white" : "bg-blue-100"}`}>
+    {
+    item?.lot  && <div>
+{
+item.lot&&
+item.lot.lotImages?.map((item,index)=>{
+    if (index===0) {
+        return <Image key={index} src={`${serverUrl}/${item.newPath}`} width={250} height={250} alt='Notification Image'/>
+    }
+
+})
+
+}
+    
+    </div>
+    }
+
+<div>
+<p className='text-sm pl-2 text-gray-500 mt-2'>
+{item?.message} <Link className='text-blue-800' href="/personalbids">
+View
+</Link>
+    </p>  
+    <p className='text-sm mt-2 pl-2 text-gray-500'>
+        {
+          timeAgo(item?.createdAt)
+        }
+    </p>
+
+
+</div>
+<div>
+
+</div>
+
+</li>
+
+       
+</ul>
+    ))
+}
+<ul className='mb-4'>
+
+<li className='flex justify-center '>
+    <Link href="/notifications" className='text-blue-800'>
+    See all notifications
+    </Link>
+</li>
+</ul>
+
+        </div>
+   
+   
+    )
+}
+
+
+
+
+
+    </li>
+
+
+
+
+    <li className='relative group'>
+<button onClick={()=>settoggleDropdown(!toggleDropdown)} className='flex text-lg gap-3 align-middle items-center cursor-pointer ' >
+<FaGavel size ={20}/> 
+<span className='flex align-middle items-center gap-1'>
+<b className=' text-gray-900'>
+   Auctions
+    </b>
+    <HiChevronDown size ={20}/> 
+</span>
+
+
+</button>
+{
+    toggleDropdown && <div className='absolute mt-2 grid justify-center w-40 px-3 shadow-lg bg-white gap-3 left-0 right-0  z-100'>
+    <Link onClick={()=>settoggleDropdown(!toggleDropdown)} href="/personalbids" className='mt-2  text-gray-900'>
+        Your Bids
+    </Link>
+    <Link onClick={()=>settoggleDropdown(!toggleDropdown)}  className='mt-2  text-gray-900' href="/upcomingauctions">
+    Upcoming Auctions
+    </Link>
+    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900' href="/liveauctions">
+    Live Auctions
+    </Link>
+    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900' href="/onlineauctions">
+    Online Auctions
+    </Link>
+    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900' href="/onsiteauctions">
+    Onsite Auctions
+    </Link>
+  
+</div>
+}
+
+
+    </li>
+
+
+    
+    <li className='relative group'>
+<button onClick={()=>setpersonalBar(!personalBar)} className='flex text-lg gap-3 align-middle items-center cursor-pointer ' >
+
+<p style={{
+   backgroundColor:"#4f46e5",
+   borderColor:"#4f46e5"
+}}  className='w-12 h-12 rounded-full   text-white flex items-center justify-center  uppercase' >
+    <span>
+    {name[0]}{surname[0]}
+    </span>
+  
+
+
+
+</p>
+
+</button>
+{
+    personalBar && <div className='absolute mt-2 grid justify-center w-40 px-3 shadow-lg bg-white gap-3 left-0 right-0  z-100'>
+ 
+ <button onClick={
+    ()=>handleLogout()
+ 
+    
+    } className='mt-2 cursor-pointer z-100  text-gray-900'>
+        Logout
+    </button>
+
+    <Link href="/hello" className='mt-2 mb-3  text-gray-900'>
+   Contact Us
+    </Link>
+   
+  
+</div>
+}
+
+
+    </li>
+    <li>
+<Link className='flex text-lg gap-3 align-middle items-center ' href="/upcomingauctions">
+
+
+
+</Link>
+    </li>
+  
+</ul>
+}
+
+
+
+
+
+    </nav>
+   </header>
+   
+{
+    isOpen && <div className="shadow transition duration-1000 ease-in  grid justify-center top-1  z-50 list-none gap-5 align-center ">
+    <li className='text-center'>
+<Link className='text-lg text-gray-900' href="/liveauctions  ">
+Live Auctions
+</Link>
+    </li>
+    <li className='text-center'>
+<Link className='text-lg text-gray-900' href="/upcomingauctions">
+Upcoming Auctions
+</Link>
+    </li>
+    <li className='text-center'>
+<Link className='text-lg text-gray-900' href="/onlineauctions">
+Online Auctions
+</Link>
+    </li>
+    <li className='text-center'>
+<Link className='text-lg text-gray-900' href="/onsiteauctions">
+Onsite Auctions
+</Link>
+    </li>
+    <li className='text-center'>
+<Link className='text-lg text-gray-900' href="/">
+Contact us
+</Link>
+    </li>
+    <li className='text-center'>
+    <Link href="/login" className='text-lg border border-solid  border-blue-500 px-8 py-1.25  text-blue-500 rounded-sm'>
+       Login
+    </Link>
+
+    </li>
+    <li className='mb-6 text-center'>
+    <Link href="/register"  className='text-lg border border-solid  border-blue-500 px-8 py-1.25 bg-blue-500 text-white rounded-sm'>
+ Signup
+</Link>
+    </li>
+</div>
+}
+
+   </div>
+  )
+}
+
