@@ -87,6 +87,7 @@ console.log(page);
         }, [error?.msg])
         
   return (
+    <Suspense fallback={<div>Loading .....</div>}>
     <div  className='flex items-center h-screen justify-center'>
         <div className='grid justify-center px-3 py-5' style={{
             boxShadow:"0 0 10px rgba(0,0,0,0.2)"
@@ -171,6 +172,7 @@ console.log(page);
             </section>
         </div>
     </div>
+    </Suspense>
   )
 }
 
