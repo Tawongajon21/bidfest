@@ -5,7 +5,7 @@ import { AiOutlineEye ,   AiOutlineEyeInvisible } from 'react-icons/ai'
 import { useState,useEffect } from 'react'
 import { baseUrl } from '@/urls'
 import { useRouter,useSearchParams } from 'next/navigation'
-
+import { Suspense } from 'react'
 function Page() {
    let searchParams=useSearchParams();
    let page=searchParams.get("from")
@@ -112,16 +112,20 @@ console.log(page);
             <section className='mt-2'>
                <form  onSubmit={handleSubmit} className='mb-6'>
                {
-                    show &&   <p className='mt-3 mb-3 text-red-500'>
+                    show &&  <p className='mt-3 mb-3 text-red-500'>
                {error?.msg}
                     </p>
+                 
                 }
 
 
 {
-    loading &&  <p className='mt-3 mb-3 '>
+    loading && <Suspense fallback={<p className='mt-3 mb-3 '>
+    Loading....
+         </p>}> <p className='mt-3 mb-3 '>
     Loading....
          </p>
+         </Suspense>
 }
 
 
