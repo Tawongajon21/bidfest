@@ -10,6 +10,7 @@ import Login from "./(auth)/login/page"
 import CheckPathway from "./checkPathway"
 import RouteTracker from "../components/RouteTracker"
 import {PreviousRouteProvider} from "@/helpers/usePreviousPath"
+import { Suspense } from "react";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -31,6 +32,7 @@ export default async function RootLayout({
 
 
   return (
+    <Suspense>
     <PreviousRouteProvider >
 
    
@@ -53,5 +55,6 @@ export default async function RootLayout({
 
     </QueryProvider>
     </PreviousRouteProvider>
+    </Suspense>
   );
 }
