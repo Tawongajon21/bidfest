@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import AuctionCard from "../../../components/auctionCard"
+
 import useSession from "@/middleware/useSession"
 function AuctionClient({refetch,data,userBids,previousPathName}) {
   const {session}=useSession();
