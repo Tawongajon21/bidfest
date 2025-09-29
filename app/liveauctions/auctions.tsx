@@ -1,12 +1,10 @@
 "use client"
 import React from 'react'
 import Image from 'next/image'
-import ImageOne from "../../public/images/photo-one.jpg"
-import {FaCalendar,FaAngleRight, FaAngleLeft} from "react-icons/fa6"
-import {FaAngleDoubleLeft, FaAngleDoubleRight} from "react-icons/fa"
+
 import Link from 'next/link'
 import { useState,useMemo } from 'react'
-import {baseUrl,imageServerUrl} from "../../urls"
+import {imageServerUrl} from "../../urls"
 import AuctionsLoading from "@/components/AuctionsLoading"
 import AuctionTimer from '@/components/AuctionTimer'
 export default function AuctionClient({data,isLoading}) {
