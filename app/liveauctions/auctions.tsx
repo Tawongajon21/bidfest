@@ -99,12 +99,12 @@ const localTime=(date)=>{
 
 {
   isLoading ? <AuctionsLoading/> :
-   currentAuctions.map((auction,idx)=>(
+   currentAuctions.map((auction)=>(
   
 
 
 
-   <div style={{
+   <div  key={auction?._id} style={{
     boxShadow:"10px 10px 10px rgba(0,0,0,0.2)"
 }} className='w-80 md:w-96 rounded-lg overflow-hidden shadow-xl bg-white '>
 <Image src={`${imageServerUrl}${auction.featuredImage[0].newPath}`}     loading='lazy'
