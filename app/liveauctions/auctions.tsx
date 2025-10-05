@@ -173,7 +173,7 @@ Auction Start Time
   }
 
 {
-    auction.type === "Online" && <AuctionTimer closeTime={auction.closeTime} openTime={auction.openTime}/>
+    auction.type === "Online" && <AuctionTimer color={null} closeTime={auction.closeTime} openTime={auction.openTime}/>
 }
 <div className='flex items-center justify-center mt-4'>
 

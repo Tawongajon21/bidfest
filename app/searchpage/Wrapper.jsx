@@ -10,14 +10,17 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchAuctions } from "../../helpers/fetchData";
 import { useState,useEffect,useRef,useMemo } from 'react';
 import { FiX } from 'react-icons/fi'
-import useSession from "../../middleware/useSession"
+import { useSession,clearSession,getSession, useClearSession } from '@/middleware/useSession'
+
 import useLots from '../../helpers/useLots';
 import AuctionCard from './auctionCard'
 import { useRouter,useSearchParams } from 'next/navigation'
 import AuctionsLoading from "../../components/AuctionsLoading"
 function Wrapper() {
-    const {session}=useSession();
+    const {data:session}=useSession();
+    console.log(session);
     let userId=session?.payload._id;
+    console.log(userId);
     const searchParams= useSearchParams();
     const term= searchParams.get("query")||""
     console.log(term);
@@ -134,7 +137,7 @@ let bids=lots?.map((item)=>{
   let userBids=bids?.map((item)=>(
     item.find((bid)=>bid.user?._id===userId)
   ));
-
+console.log(userBids);
 
 
   return (

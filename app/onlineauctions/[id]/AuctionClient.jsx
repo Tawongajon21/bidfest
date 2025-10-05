@@ -18,7 +18,7 @@ function AuctionClient({data,userBids,previousPathName}) {
            {
             data?.name
            }
-           hello
+        
         </h2>
     </div>
     <div className=' px-13 flex gap-14 flex-wrap  justify-center mt-5 '> 

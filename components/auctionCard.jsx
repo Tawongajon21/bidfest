@@ -7,7 +7,10 @@ import {AiFillStar} from "react-icons/ai"
 import {BiChair,BiCar,BiCalendar} from "react-icons/bi"
 import {BsCarFront,BsSpeedometer} from "react-icons/bs"
 import {FaDoorOpen,FaPerson} from "react-icons/fa6"
-import useSession from "@/middleware/useSession"
+import { useRegister } from '@/helpers/userRegister'
+import { useLogin } from '@/helpers/userLogin'
+import { useSession, getSessionFromToken,getSession,clearSession} from '@/middleware/useSession'
+
 import {FaCar,FaRev,FaGasPump,FaGavel,FaSignOutAlt,FaCalculator,FaInfo} from "react-icons/fa"
 import { FiX } from 'react-icons/fi'
 import { useMutation,useQueryClient, useQuery,useQueries } from '@tanstack/react-query'
@@ -25,8 +28,9 @@ import AuctionTimer from "./AuctionTimer"
 
 function AuctionCard({startDateTime,expectedPrice,closeTime,openTime,refetch,type,key,lotImages,item,previousPathName,userBids,bids,id,auctionId,auctionDate,auctionDeadline, auctionTime ,propertyName,currentPrice}) {
   let queryClient=useQueryClient();
-    const {session}=useSession();
-    console.log(type);
+    
+    const {data:session,isLoading}=useSession();
+    console.log(session);
 const [showRegister, setshowRegister] = useState(false);
 const [showLogin, setshowLogin] = useState(false)
 
@@ -194,32 +198,9 @@ const updateBidObject=useMutation({
 })
 let bid={auction,amount,lot,buyersPremium,vatOnBuyersPremium,total}
 const [pendingBid, setpendingBid] = useState({})
-const submitBid=()=>{
-    if (!signature) {
-        setshowRegister(true);
-        setpendingBid(bid);
-        return 
-    }
-    if (signature) {
-        if (amount<currentPrice) {
-            alert("The Amount should be equal or greater than the Current Price")
-            return
-        }
-        mutate(bid)
-        setbidPlaced(!bidPlaced)
-
-   
-
-    } 
-
-
-  }
 
 
 
-  console.log(showRegister);
-  console.log(pendingBid);
-  
 
   let userBid=session ?  userBids?.find((bid)=>bid?.lot===id) : null;
 
@@ -228,7 +209,7 @@ const submitBid=()=>{
   const BUYERS_PREMIUM_RATE=0.15;
   const VAT_RATE=0.15;
   
-  
+  console.log(userBid);
   
 
   const editBid=()=>{
@@ -296,7 +277,7 @@ setshowBidConfirmation(!showBidConfirmation)
     }
 
   }
-console.log(closeTime);
+
 const [countdown, setcountdown] = useState({})
 function getCountdown(openTimeStr,closeTimeStr){
     let now=new Date();
@@ -342,7 +323,10 @@ useEffect(() => {
     }, [openTime,closeTime])
 
 
-const handleRegister=async(e)=>{
+
+let registerObject=useRegister()
+let loginObject= useLogin()
+    const handleRegister=async(e)=>{
     e.preventDefault();
     setloading(true);
     setregisterError("");
@@ -352,23 +336,10 @@ const handleRegister=async(e)=>{
         return
     }
     else{
-        const res=await fetch(`${baseUrl}auth/signup`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            body:JSON.stringify({email,phone,password,name,surname})
-        })
-        const data= await res.json();
-    
-        if (res.ok) {
-               localStorage.setItem("signature",data.signature)
-               setshowRegister(false);
-               setIsOpen(true)
+        registerObject.mutate({email,phone,password,name,surname})
+  
+  
      
-        }else{
-            setregisterError(data)
-        }
        
     }
     
@@ -386,76 +357,106 @@ const handleRegister=async(e)=>{
     
     }
     const handleLogin=async(e)=>{
-        e.preventDefault();
-        setloading(true);
-        setloginError(null);
-        try {
-        
-            const res=await fetch(`${baseUrl}auth/signin`,{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify({email,password})
-            })
-            const data= await res.json();
-
-            if (res.ok) {
-             
-             
-           
-              
-         
-             }else{
-               
-                setloginError(data)
-               
-             }
-         
-
-
-
-
-           
-
-          // localStorage.setItem("signature",data.signature)
-           // router.push("/")
-        } catch (error) {
-      console.log(error.msg);
-            setloginError(error.message)
-        }
-        finally{
-            setloading(false)
-        }
-        
-        
-        }
-    useEffect(() => {
-        if (registerError?.msg) {
-         setshow(true);
-         const timer=setTimeout(()=>{
-             setshow(false)
-         },5000)
-         return ()=>clearTimeout(timer)
-        }
+    e.preventDefault();
+    setloading(true);
+    setregisterError("");
+    try {
+let formData={email,password}
+        loginObject.mutate(formData)
+  
+  
+     
+       
+    
+    
+    
+    
+    } catch (error) {
+       
+        console.log(error);
       
-        if (loginError?.msg) {
-         setshow(true);
-         const timer=setTimeout(()=>{
-             setshow(false)
-         },5000)
-         return ()=>clearTimeout(timer)
-        }
-      
-         }, [registerError?.msg,loginError?.msg])
-         
+    }
+    finally{
+        setloading(false)
+    }
+    
+    
+    }
+   
+    
+
+
+         useEffect(() => {
+            if (registerObject.error) {
+             setshow(true);
+             const timer=setTimeout(()=>{
+                 setshow(false)
+             },5000)
+             return ()=>clearTimeout(timer)
+            }
+          if (registerObject.isSuccess) {
+           
+          setshowRegister(false)
+          }
+             }, [error,registerObject.error,registerObject.isSuccess])
+            
+         useEffect(() => {
+            if (loginObject.error) {
+             setshow(true);
+             const timer=setTimeout(()=>{
+                 setshow(false)
+             },5000)
+             return ()=>clearTimeout(timer)
+            }
+          if (loginObject.isSuccess) {
+refetch()
+
+          setshowRegister(false)
+          if (userBid!==null) {
+            queryClient.invalidateQueries({queryKey:["lots",id]})
+            setIsEdit(true)
+            setIsOpen(false)
+            
+           
+          }
+
+          }
+             }, [error,loginObject.error,loginObject.isSuccess])
+            
+             const submitBid=()=>{
+                if (!signature) {
+                    setshowRegister(true);
+                    setpendingBid(bid);
+                    return 
+                }
+                if (signature) {
+                    if (amount<currentPrice) {
+                        alert("The Amount should be equal or greater than the Current Price")
+                        return
+                    }
+            if (userBid) {
+                setIsEdit(true)
+            }else{
+                mutate(bid)
+                setbidPlaced(!bidPlaced)
+        setshowBidConfirmation(true)
+            }
+               
+            
+            
+                } 
+            
+            
+              }
+            
+            
   return (
     <div >
 
       {
         isOpen && <div className="fixed inset-0 bg-transparent  bg-opacity-50 z-40 flex items-center justify-center">
 {
-bidPlaced === false &&    <div className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md z-9999999">
+bidPlaced === false &&     <div className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md z-9999999">
 <p className='flex items-center content-center justify-between'>
     <p>
     <h2 className="text-2xl font-semibold mb-4">
@@ -549,7 +550,7 @@ Use calculator below to determine your final invoice amount based on your bid.
      */
 }
 <p className='flex justify-center'>
-<button onClick={()=>submitBid()} className="bg-blue-500 text-white px-4 py-2 cursor-pointer">
+<button onClick={()=>submitBid()} className="bg-indigo-600 hover:bg-indigo-500  rounded  text-white px-4 py-2 cursor-pointer">
 Submit
 </button>
 </p>
@@ -572,7 +573,7 @@ Submit
 
 {
   
-    isEdit &&     <div key={key} className="flex items-center justify-center fixed inset-0   backdrop-blur-sm    z-10000000 ">
+     userBid!==null  &&  isEdit &&    <div key={key} className="flex items-center justify-center fixed inset-0   backdrop-blur-sm    z-10000000 ">
   
         {
       bidEdited === false &&     <div className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md z-9999999 backdrop-blur-sm ">
@@ -765,17 +766,18 @@ You have placed your bid successfully, you can decide either to stay on this pag
     }} className='text-red-500 font-bold cursor-pointer' size={20}/>
     </p>
     </p>
-   <form onSubmit={handleLogin}>
-   {
+    {
                     show &&   <p className='mt-3 mb-3 text-red-500'>
-               {loginError?.msg}
+                  { loginObject?.error.message}
                     </p>
                 }
 {
-    loading &&  <p className='mt-3 mb-3 '>
-    Loading....
+loginObject.isLoading === true &&  <p className='mt-3 mb-3 '>
+ Loading....
          </p>
 }
+   <form onSubmit={handleLogin}>
+
 
    <p className='w-full'>
        <label htmlFor="">
@@ -799,7 +801,7 @@ You have placed your bid successfully, you can decide either to stay on this pag
 
 
 <div className='relative'>
-<input value={password} onChange={(e)=>setpassword(e.target.value)} type={showPassword ? "text":"password"}  placeholder='Enter your password' className='w-full pl-4 pr-10 py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
+<input  onChange={(e)=>setpassword(e.target.value)} type={showPassword ? "text":"password"}  placeholder='Enter your password' className='w-full pl-4 pr-10 py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
 
 <span onClick={togglePassword} className='absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer'>
 {
@@ -813,10 +815,10 @@ You have placed your bid successfully, you can decide either to stay on this pag
 </p>
 
    
-    <p className='flex justify-between sm:justify-between gap-5'>
+    <p className='flex justify-between sm:justify-between gap-5 mt-3'>
      
       <button 
-         className='border-2 border-[#4f46e5] rounded-md text-[#4f46e5] px-4 py-2 cursor-pointer'>
+        className='border-2 border-[#4f46e5]   text-white bg-[#4f46e5] rounded-md  px-4 py-2 cursor-pointer'>
       Login
       </button>
     </p>
@@ -845,15 +847,14 @@ You have placed your bid successfully, you can decide either to stay on this pag
    <form className='mb-6' onSubmit={handleRegister}>
    {
                     show &&   <p className='mt-3 mb-3 text-red-500'>
-               {registerError?.msg}
+               { registerObject?.error.message}
                     </p>
                 }
-                     {
-                    loading &&  <p className='mt-3 mb-3 '>
-                   Loading...
-                         </p>
-
-                }
+             {
+    registerObject.isLoading === true &&  <p className='mt-3 mb-3 '>
+Loading.....
+         </p>
+}
    <p className='w-full'>
        <label htmlFor="">
     Name
@@ -933,7 +934,7 @@ You have placed your bid successfully, you can decide either to stay on this pag
    
     <p className='flex justify-between sm:justify-between gap-5 mt-2'>
      
-      <button  className='border-2 border-[#4f46e5] rounded-md text-[#4f46e5] px-4 py-2 cursor-pointer'>
+      <button  className='border-2 border-[#4f46e5]   text-white bg-[#4f46e5] rounded-md  px-4 py-2 cursor-pointer'>
         Register
       </button>
     </p>
@@ -1039,6 +1040,39 @@ You have placed your bid successfully, you can decide either to stay on this pag
   
   </h5>
 }
+{
+    type === "Online" &&  <h5 className='text-xl font-semibold mb-2 flex justify-between align-middle items-center'>
+    <span>
+ Current Price
+    </span>
+    <span>
+    {formatCurrency(currentPrice)}
+    </span>
+  
+  </h5>
+}
+{
+    type === "Online" &&  <h5 className='text-xl font-semibold mb-2 flex justify-between align-middle items-center'>
+    <span>
+Expected Selling Price
+    </span>
+    <span>
+    {formatCurrency(expectedPrice)}
+    </span>
+  
+  </h5>
+}
+{
+    type === "Online" &&  <h5 className='text-xl font-semibold mb-2 flex justify-between align-middle items-center'>
+    <span>
+Your Bid Position
+    </span>
+    <span>
+  1
+    </span>
+  
+  </h5>
+}
 
 <div className='flex items-center justify-center mt-4'>
 
@@ -1072,7 +1106,7 @@ redirect(`/login?from=/auctions/${auctionId}`)
     }
 }
 
-className='bg-[#635BFF] hover:bg-[#7a6bff] text-white text-sm px-6 py-2 rounded-md font-medium cursor-pointer'>
+className ='bg-[#635BFF] hover:bg-[#7a6bff] text-white text-sm px-6 py-2 rounded-md font-medium cursor-pointer'>
     Edit Item
 </button>
 

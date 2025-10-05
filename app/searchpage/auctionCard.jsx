@@ -7,7 +7,9 @@ import {BiChair, BiCar, BiCalendar} from "react-icons/bi"
 import {BsCarFront, BsSpeedometer} from "react-icons/bs"
 import {FaDoorOpen, FaPerson} from "react-icons/fa6"
 import Link from 'next/link'
-import useSession from "@/middleware/useSession"
+
+import { useSession, getSessionFromToken,getSession,clearSession} from '@/middleware/useSession'
+
 import {FaCar, FaRev, FaGasPump, FaGavel, FaSignOutAlt, FaCalculator, FaInfo} from "react-icons/fa"
 import {FiX} from 'react-icons/fi'
 import {useMutation, useQueryClient, useQuery, useQueries} from '@tanstack/react-query'
@@ -34,7 +36,8 @@ function AuctionCard({openTime,closeTime,startDateTime,type,refetch, rank, lotIm
 
     const [staleBid, setstaleBid] = useState({})
     let queryClient = useQueryClient();
-    const {session} = useSession();
+   
+    const {data:session}=useSession();
     const [text, settext] = useState(" 11d 30hrs 50mins 10seconds")
     const [bidPlaced, setbidPlaced] = useState(false)
     const [bidEdited, setbidEdited] = useState(false)
@@ -50,11 +53,11 @@ function AuctionCard({openTime,closeTime,startDateTime,type,refetch, rank, lotIm
     let documentHandling = amount * 0.15
     console.log(documentHandling);
     let auction = auctionId
-    let userId = session?.payload._id;
+    let userId = session?._id;
 
     console.log(userBids);
 
-
+  
     useEffect(() => {
         const timer = setInterval(() => {
             setshowPrice((prevShowPrice) => !prevShowPrice);
@@ -127,6 +130,7 @@ settimeleft(label)
         return () => clearInterval(interval)
     }, [auctionDate, auctionDeadline])
 
+    console.log(session);
     let signature = session?.token;
 
     let bidData = {auction, lot, amount}
@@ -281,8 +285,6 @@ settimeleft(label)
         return {date:formattedDate,time}
     }
 
-console.log(status);
-console.log(timeleft);
 
     return (
         <div style={{
@@ -803,7 +805,7 @@ setIsOpen(!isOpen)
                                             <button
                                                 onClick={
                                                     () => {
-                                                        if (session) {
+                                                        if (session?.token) {
 
                                                             setloggedIn(true)
                                                             setgetUserBid(userHadBid?.bid)
@@ -841,7 +843,7 @@ setIsOpen(!isOpen)
     timeleft !== "Auction not opened yet" &&   <button
     onClick={
         () => {
-            if (session) {
+            if (session?.data) {
 
                 setloggedIn(true)
                 setbidPlaced(!bidPlaced)

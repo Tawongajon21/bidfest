@@ -23,6 +23,7 @@ import { useQuery, useQueryClient,useMutation } from "@tanstack/react-query";
 import timeAgo from "@/helpers/timeAgo"
 import EmptyNotification from "@/public/images/empty-notifications.png"
 import useNotifications from "@/helpers/useUnreadNotifications"
+
 export default function LoggedInNavbar({session,clearSession}) {
   
     let serverData =  useNotifications();
@@ -59,7 +60,9 @@ const [message, setmessage] = useState("")
   
     const handleLogout=()=>{
     
-        clearSession()
+        localStorage.removeItem("signature")
+        queryClient.setQueryData(["sessions"],null);
+        queryClient.invalidateQueries(["sessions"])
     }
    
     const [audioAllowed, setaudioAllowed] = useState(false)

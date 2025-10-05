@@ -10,7 +10,7 @@ import Login from "./(auth)/login/page"
 import CheckPathway from "./checkPathway"
 import RouteTracker from "../components/RouteTracker"
 import {PreviousRouteProvider} from "@/helpers/usePreviousPath"
-import { Suspense } from "react";
+import { ReactNode, Suspense } from "react";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -21,40 +21,44 @@ const poppins = Poppins({
 
 
 
+interface RootLayoutProps{
+  children : ReactNode
+}
 
-
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({children}:RootLayoutProps) {
   
 
 
   return (
+    <html lang="en" >
+      
+      <body>
     <Suspense>
+   
     <PreviousRouteProvider >
 
    
     <QueryProvider>
       <RouteTracker/>
-    <html lang="en" >
+   
  
 
 
-      <body>
    <CheckPathway >
    {children}
    </CheckPathway>
        
 
       
-      </body>
+   
     
-    </html>
+   
 
     </QueryProvider>
     </PreviousRouteProvider>
+   
     </Suspense>
+    </body>
+    </html>
   );
 }

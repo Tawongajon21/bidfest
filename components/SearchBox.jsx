@@ -17,7 +17,7 @@ function SearchBox() {
   return (
     <div style={{
       backgroundColor:"#14263c"
-    }} className='grid place-items-center  justify-center content-center items-center  h-50 text-white  mb-6 z-100'>
+    }} className='grid place-items-center  justify-center content-center items-center  h-50 text-white   z-100'>
         <div>
         <h2 className=" text-3xl  md:text-4xl font-bold flex justify-center"  >
             Search Of Items

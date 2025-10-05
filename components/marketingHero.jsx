@@ -79,7 +79,9 @@ console.log(data);
 
 
   <SearchBox/>
-  <div className='grid justify-center bg-indigo-50 py-20 px-6 mt-5'>
+  <div style={{
+        clipPath:"polygon(0 0,100% 0, 100% 100%,0% 100%)"
+    }} className='grid justify-center bg-indigo-50 py-20 px-6 '>
         <div className='max-w-3xl mx-auto text-center'>
 <h4 className='text-indigo-500 uppercase tracking-wide text-sm font-semibold'>
 Convenient Solution
@@ -142,7 +144,7 @@ Experience the thrill of live bidding in person.Our on-site auctions bring buyer
 {
     data?.slice(-7,-1).map((item)=>(
       
-        <div style={{
+        <div key={item._id} style={{
     boxShadow:"10px 10px 10px rgba(0,0,0,0.2)"
 }} className='max-w-sm rounded-lg overflow-hidden shadow-xl bg-white '>
 <Image src={item?.lotImages ?  `${imageServerUrl}${item?.lotImages[0]?.newPath}` : image} alt='Alternate Image' width={500} height={500} className='w-full h-48 object-cover mb-0.4'/>

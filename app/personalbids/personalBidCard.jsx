@@ -6,7 +6,8 @@ import {AiFillStar} from "react-icons/ai"
 import {BiChair,BiCar,BiCalendar} from "react-icons/bi"
 import {BsCarFront,BsSpeedometer} from "react-icons/bs"
 import {FaDoorOpen,FaPerson} from "react-icons/fa6"
-import useSession from "@/middleware/useSession"
+import { useSession,clearSession,getSession, useClearSession } from '@/middleware/useSession'
+
 import {FaCar,FaRev,FaGasPump,FaGavel,FaSignOutAlt,FaCalculator} from "react-icons/fa"
 import { FiX } from 'react-icons/fi'
 import { useMutation,useQueryClient,useQuery } from '@tanstack/react-query'
@@ -20,6 +21,7 @@ import EditDataModal from "../../components/EditDataModal"
 import {fetchBid} from "../../helpers/fetchBid"
 import {getPreviousPath} from "../../components/RouteTracker"
 import Link from 'next/link'
+import AuctionTimer from '@/components/AuctionTimer'
 function PersonalBidCard({
 bidId,amount,auctionId,auctionDate,
 code,createdAt,currentPrice,
@@ -28,12 +30,17 @@ interiorImages,keyAvailable,
 location,mileage,
 propertyName,sold,
 startingPrice,updatedAt,
-_id,rank,auctionTime,id,auctionDeadline,lotImages,item,auctionType,refetch
+_id,rank,auctionTime,id,auctionDeadline,lotImages,item,auctionType,refetch,openTime,closeTime
 
 }) {
+  
+
   let queryClient=useQueryClient();
   let previousPathName=getPreviousPath()
-    const {session}=useSession();
+  const session=getSession();
+
+   
+  
 const [text, settext] = useState(" 11d 30hrs 50mins 10seconds")
 const [bidPlaced, setbidPlaced] = useState(false)
 const [bidEdited, setbidEdited] = useState(false)
@@ -64,31 +71,6 @@ const [timeleft, settimeleft] = useState({days:0,hours:0,minutes:0,seconds:0})
 const BUYERS_PREMIUM_RATE=0.15;
 const VAT_RATE=0.15;
 
-useEffect(() => {
-const interval= setInterval(()=>{
-    let dateString=auctionDate.split("T")[0]
-    const fullDateTime=dateString+ "T"+auctionTime+":00"
-
-    let deadline= new Date(fullDateTime);
- 
-    let now=new Date();
-    const diff=deadline-now;
-    if (diff<=0) {
-        clearInterval(interval);
-        settimeleft({days:0,hours:0,minutes:0,seconds:0})
-    }else{
-        settimeleft({
-            days:Math.floor(diff/(1000*60*60*24)),
-            hours:Math.floor((diff/(1000*60*60*24))%24),
-            minutes:Math.floor((diff/(1000*60))%60),
-            seconds:Math.floor((diff/1000)%60),
-            
-            
-        })
-    }
-},1000)
-return ()=>clearInterval(interval)
-}, [auctionDeadline])
 
 let signature=session?.token;
 
@@ -217,13 +199,17 @@ const editBid=()=>{
        
         updateBidObject.mutate(getUserBidInfo)
    setbidEdited(!bidEdited)
-  // setshowBidConfirmation(!showBidConfirmation)
+   setIsEdit(false)
+   setIsOpen(false)
+   refetch()
+ setshowBidConfirmation(true)
 
 
 
     }
 
   }
+
   useEffect(()=>{
 
     let amount=parseFloat(getUserBidInfo?.amount)||0;
@@ -253,12 +239,74 @@ let total=parseFloat((Number(amount)+Number(premium)+Number(vat))).toFixed(2)
     })
 },[getUserBidInfo?.amount])
 
-console.log(getUserBidInfo);
+console.log(openTime);
   return (
     <>
+{
+    showBidConfirmation === true && 
+    <div key={_id} className="fixed inset-0 bg-transparent  bg-opacity-50 z-40 flex items-center justify-center backdrop-blur-sm">
+        {
+    <div key={_id} className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md z-9999999">
+      <p className='flex items-center content-center justify-between'>
+          <p>
+          <h2 className="text-2xl font-semibold mb-4">
+    Edit Bid Successfull
+      </h2>
+          </p>
+      
+      <p className='mt-[-15px] cursor-pointer'>
+      <FiX onClick={()=>{
+        console.log("hello");
+          setIsEdit(!isEdit)
+    ///  console.log(bidEdited);
+      }} className='text-red-500 font-bold' size={20}/>
+      </p>
+      </p>
+ 
 
+      <p className='mb-2 grid justify-center'>
+  
+          <p className='grid justify-between align-middle content-center'>
+      <h3 className='font-bold'>
+         You have successfully edited your bid
+      </h3>
+
+
+      
+          </p>
+        
+      
+      </p>
+   
+ 
+      <p className='grid justify-center'>
+      <button onClick={()=>{
+        setshowBidConfirmation(false)
+        setIsOpen(false)
+        setIsEdit(false)
+        setbidEdited(true)
+    }} className="bg-[#635BFF] text-white px-4 py-2 cursor-pointer">
+   Okay
+      </button>
+      </p>
+      
+      
+      </div> 
+       
+        }
+         
+        
+        
+        
+        
+        
+        
+        
+        
+                        </div>
+}
       {
-        isOpen && <div className="fixed inset-0 bg-transparent  bg-opacity-50 z-40 flex items-center justify-center">
+        isOpen === true && <div className="fixed inset-0 bg-transparent  bg-opacity-50 z-60 flex items-center justify-center">
 {
 bidPlaced === false ?    <div className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md z-9999999">
 <p className='flex items-center content-center justify-between'>
@@ -322,7 +370,7 @@ You will be redirected to the my bids page where you can monitor your bids
 
 {
     isEdit === true && 
-    <div key={_id} className="fixed inset-0 bg-transparent  bg-opacity-50 z-40 flex items-center justify-center backdrop-blur-sm">
+    <div key={_id} className="fixed inset-0 bg-transparent  bg-opacity-50 z-60 flex items-center justify-center backdrop-blur-sm">
         {
       bidEdited === false &&      <div key={_id} className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md z-9999999">
       <p className='flex items-center content-center justify-between'>
@@ -425,52 +473,7 @@ You will be redirected to the my bids page where you can monitor your bids
         
                         </div>
 }
-<>
-{
- showBidConfirmation &&   <div className='grid justify-center'>
- <div  className="fixed inset-0 bg-transparent  bg-opacity-50 z-40 flex justify-center top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ">
- <div className="fixed inset-0 bg-transparent  bg-opacity-50  p-6 rounded shadow-lg w-[90%] max-w-md z-9999999 flex items-center justify-center">
-  <div className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md z-9999999">
- <p className='flex items-center content-center justify-between'>
-     <p>
-     <h2 className="text-xl font-semibold mb-4">
- Bid edited successfully
- </h2>
-     </p>
- 
- <p className='mt-[-15px]'>
- <FiX onClick={()=>{
-    setshowBidConfirmation(!showBidConfirmation)
- }} className='text-red-500 font-bold cursor-pointer' size={20}/>
- </p>
- </p>
- 
- <p className='mb-4'>
-You have placed your bid successfully, you can decide either to stay on this page or to go to my bids page to monitor your bids
- </p>
- 
- <p className='flex justify-center sm:justify-center '>
 
-   <button onClick={()=>{
-       refetch()
-       setIsEdit(false)
-       setbidEdited(false)
-  setshowBidConfirmation(!showBidConfirmation)
-  
-       }} className='border-2 border-[#4f46e5] bg-[#4f46e5] rounded-md text-white px-4 py-2 cursor-pointer'>
-    Okay
-   </button>
- </p>
- </div> 
- </div>
- </div>
- </div>
-
- 
-
-       }
-      
-      </>
             
 <div style={{
     boxShadow:"10px 10px 10px rgba(0,0,0,0.2)"
@@ -493,13 +496,8 @@ You have placed your bid successfully, you can decide either to stay on this pag
          
 </h5>
 <h5 className='text-xl font-semibold mb-2 flex justify-between align-middle items-center'>
-<span>
-    Time Left
-</span> 
-<span>
-{timeleft.days}d {timeleft.hours}hrs {timeleft.minutes}mins {timeleft.seconds}secs left
-</span>
- 
+
+<AuctionTimer openTime={openTime} closeTime={closeTime}/>
 
 
 </h5>
@@ -529,12 +527,12 @@ Bid Rank
     <button 
 onClick={
     ()=>{
-        if (session) {
+        if (session!== null) {
             
             setloggedIn(true)
-     
-            setIsEdit(!isEdit)
-           
+     setgetUserBidInfo(item)
+            setIsEdit(true)
+           setbidEdited(false)
         }else {
 setloggedIn(false);
 redirect(`/login?from=/auctions/${auctionId}`)

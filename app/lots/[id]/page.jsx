@@ -3,7 +3,7 @@ import React from 'react'
 import { useQuery,useMutation,useQueryClient } from "@tanstack/react-query";
 import { fetchLot } from '../../../helpers/fetchLot';
 import {use} from "react"
-import useSession from "@/middleware/useSession"
+import {getSession} from "@/middleware/useSession"
 import { useEffect } from 'react';
 import { useRef,useState } from 'react';
 import ImageComponent from './Image';
@@ -20,13 +20,14 @@ import {redirect} from "next/navigation"
 import {placeBid} from "@/helpers/addBid"
 import {updateBid} from "@/helpers/updateBid";
 import LotLoadingSkeleton from './LotLoadingSkeleton';
+import AuctionTimer from '@/components/AuctionTimer';
 function Page({params}) {
 
 let previousRoute=usePreviousRoute();
 let queryClient=useQueryClient();
 console.log(previousRoute);
     const {id}=use(params);
-    const {session}=useSession();
+    const {session}=getSession();
     let userId=session?.payload._id;
     let signature=session?.token;
 
@@ -205,6 +206,26 @@ setshowBidConfirmation(!showBidConfirmation)
     }
 
   }
+
+
+  function formatDate(auctionDate) {
+    const date= new Date(auctionDate);
+const formattedDate=date.toLocaleDateString('en-US',{
+    weekday:"long",
+    year:"numeric",
+    month:"long",
+    day:"numeric"
+});
+return formattedDate
+}
+
+const localTime=(date)=>{
+  const newDate= new Date(date);
+  const utcHours=String(newDate.getUTCHours()).padStart(2,'0');
+  const utcMinutes=String(newDate.getUTCMinutes()).padStart(2,'0')
+  const time = `${utcHours}:${utcMinutes}`
+  return time
+}
  
 
   return (
@@ -560,16 +581,29 @@ Item Type: {data?.itemType}
 </span>
 
 </div>
-<div className='flex items-center gap-2'>
+{
+     data?.auction.type === "Onsite" &&  
+     <div className='flex items-center gap-2'>
 <span className='text-red-500 text-[17px]'>
-Auction Deadline : {days} days  {hours} hours {minutes} minutes {seconds} seconds left
+Auction Start Time : {formatDate(data?.auction.startDateTime)}
 </span>
 
 </div>
-<div className='flex items-center gap-2'>
-<span className='text-indigo-400 text-[17px]'>
-Auction Location : {data?.auction?.auctionLocation}
+}
+{
+     data?.auction.type === "Onsite" &&  
+     <div className='flex items-center gap-2'>
+<span className='text-red-500 text-[17px]'>
+Auction Start Time : {localTime(data?.auction.startDateTime)}
 </span>
+
+</div>
+}
+
+{
+    data?.auction.type === "Online" && <AuctionTimer color={"red"}  openTime={data?.auction.openTime} closeTime={data?.auction.closeTime}/>
+}
+<div className='flex items-center gap-2'>
 
 </div>
 <div className='flex items-center gap-2'>
@@ -616,7 +650,7 @@ data?.auctionType === "Online" ?  (
     getUserBid ?     <button 
     onClick={
       ()=>{
-          if (session) {
+          if (session?.payload._id) {
               
               setloggedIn(true)
          
@@ -634,7 +668,7 @@ className="bg-[#4f46e5] text-white px-4 py-2 cursor-pointer">
 </button> :     <button 
           onClick={
             ()=>{
-                if (session) {
+                if (session?.payload._id) {
                     
                     setloggedIn(true)
                     
@@ -685,7 +719,7 @@ className="bg-[#4f46e5] text-white px-4 py-2 cursor-pointer">
         <button 
         onClick={
           ()=>{
-              if (session) {
+              if (session?.payload._id) {
                   
                   setloggedIn(true)
                   

@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-
+export const dynamic="force-dynamic"
 import { useRouter } from 'next/navigation';
 import { useState,useEffect } from 'react';
 import {FaCar,FaRev,FaGasPump,FaGavel,FaSignOutAlt} from "react-icons/fa"
@@ -16,16 +16,23 @@ import {fetchPersonalBids} from "../../helpers/getPersonalBids"
 import {fetchLots} from "../../helpers/fetchLots"
 import {fetchLot} from "../../helpers/fetchLot"
 import { useQuery,useQueries } from "@tanstack/react-query";
-import useSession from "../../middleware/useSession"
+import { useSession,clearSession,getSession, useClearSession } from '@/middleware/useSession'
+
 import PersonalBidCard from './personalBidCard';
 import LotLoadingSkeleton from "../../components/LotLoadingSkeleton"
 import AuctionsLoading from '../../components/AuctionsLoading';
 function Page() {
-    const {session}=useSession();
-
+  const [session, setsession] = useState(null);
+  useEffect(() => {
+    
+  let sessionData= getSession();
+  setsession(sessionData)
    
+  }, [])
+  
   
    let id=session?.payload._id;
+   console.log(id);
     const {data,isLoading,error,refetch}=useQuery({
         queryKey:["bids",id],
         queryFn:fetchPersonalBids,
@@ -36,6 +43,7 @@ function Page() {
         staleTime:"Infinity"
       
     })
+
     const lotQueries=useQueries({
    queries:(data||[]).map(bid=>({
     queryKey:["lot",bid.lot],
@@ -48,7 +56,7 @@ function Page() {
 
   let bids=data   ? data : [];
 
-
+console.log(bids);
 
 //console.log(grouped);
 
@@ -123,7 +131,8 @@ vat={item?.vat}
 totalWithVat={item?.totalWithVat}
 cashHandling={item?.cashHandling}
 totalWithVatWithCashHandling={item?.totalWithVatWithCashHandling}
-
+openTime={item.auction.openTime}
+closeTime={item.auction.closeTime}
   />
     ))
 

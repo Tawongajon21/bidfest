@@ -6,14 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import  {fetchLots}  from "../../../helpers/fetchLots";
 import {use} from "react"
 import { useRouter } from 'next/router';
-import useSession from "@/middleware/useSession"
+import {useSession} from "@/middleware/useSession"
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useRef,useState } from 'react';
 import {getPreviousPath} from "../../../components/RouteTracker"
 export default  function Wrapper({params}) {
   const {id}=use(params);
-  const {session}=useSession();
+  
+  const {data:session}=useSession();
   let userId=session?.payload._id;
 
   const {data,isLoading,error,refetch}=useQuery({

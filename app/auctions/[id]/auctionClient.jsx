@@ -2,9 +2,9 @@
 import React from 'react'
 import AuctionCard from "../../../components/auctionCard"
 
-import useSession from "@/middleware/useSession"
+import {useSession} from "@/middleware/useSession"
 function AuctionClient({refetch,data,userBids,previousPathName}) {
-  const {session}=useSession();
+  const {data:session}=useSession();
   let signature=session?.signature
   console.log(data);
 

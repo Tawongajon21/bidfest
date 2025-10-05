@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { useEffect,useState } from 'react'
-function AuctionTimer({openTime,closeTime}) {
+function AuctionTimer({openTime,closeTime,color}) {
 const [timeLeft, settimeLeft] = useState("");
 const [status, setstatus] = useState("");
 const [countdown, setcountdown] = useState({})
@@ -89,11 +89,11 @@ let interval=setInterval(()=>{
 })
 return ()=>clearInterval(interval)
 }, [openTime,closeTime])
-console.log(closeTime);
+
   return (
     <>
         {
-       countdown.status ===  'Not Yet Open' &&    <h5 className='text-xl font-semibold mb-2 flex justify-between align-middle items-center'>
+       countdown.status ===  'Not Yet Open' &&   color === null || undefined &&  <h5 className={`text-xl font-semibold mb-2 flex justify-between align-middle items-center `}>
        <span>
        Bidding Opens In
        </span>
@@ -115,6 +115,26 @@ console.log(closeTime);
        </span>
      
      </h5>
+        }
+
+
+        {
+            countdown.status === 'Not Yet Open' && color === "red" && <div className='flex items-center gap-2'>
+            <span className='text-indigo-400 text-[17px]'>
+          Bidding Opens In  :    {countdown.timeLeft.days} days {countdown.timeLeft.hours} hrs {countdown.timeLeft.minutes} minutes {countdown.timeLeft.seconds} seconds
+   
+            </span>
+            
+            </div>
+        }
+        {
+            countdown.status === 'Open' && color === "red" && <div className='flex items-center gap-2'>
+            <span className='text-indigo-400 text-[17px]'>
+          Bidding Close In  :    {countdown.timeLeft.days} days {countdown.timeLeft.hours} hrs {countdown.timeLeft.minutes} minutes {countdown.timeLeft.seconds} seconds
+   
+            </span>
+            
+            </div>
         }
       
      

@@ -1,3 +1,4 @@
-export const baseUrl:String='http://localhost:4000/api/v1/';
-export const imageServerUrl:String='http://localhost:4000/'
-export const serverUrl='http://localhost:4000'
+export const baseUrl:String='http://api.bidfirstauctions.co.zw/api/v1/';
+export const imageServerUrl:String='http://api.bidfirstauctions.co.zw/'
+export const serverUrl='http://api.bidfirstauctions.co.zw/'
+

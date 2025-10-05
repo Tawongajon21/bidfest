@@ -6,15 +6,21 @@ import { useState,useEffect } from 'react'
 import { baseUrl } from '@/urls'
 import { useRouter,useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
+import { useLogin } from '@/helpers/userLogin'
+
 function Login() {
+    const {mutate:login,isPending,error,isLoading,isSuccess}=useLogin()
+
    let searchParams=useSearchParams();
    let page=searchParams.get("from")
-console.log(page);
+console.log(error?.message);
+
     const [showPassword, setshowPassword] = useState(false)
     const [email, setemail] = useState("")
+    const [formData, setformData] = useState({email:"",password:""})
     const [loading, setloading] = useState(false)
     const [show, setshow] = useState(false)
-    const [error, seterror] = useState(null)
+   
     const router=useRouter()
    
     const [password, setpassword] = useState("")
@@ -23,69 +29,25 @@ console.log(page);
     }
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        setloading(true);
-        seterror(null);
-        try {
-        
-            const res=await fetch(`${baseUrl}auth/signin`,{
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
-                },
-                body:JSON.stringify({email,password})
-            })
-            const data= await res.json();
-
-            if (res.ok) {
-             
-             
-                localStorage.setItem("signature",data.signature)
-                
-                if (page==="/" || page===null) {
-
-                    router.push("/")
-                }else{
-                    router.push(`${page}`)
-                }
-              
-              
-         
-             }else{
-               
-                seterror(data)
-               
-             }
-         
-
-
-
-
-           
-
-          // localStorage.setItem("signature",data.signature)
-           // router.push("/")
-        } catch (error) {
-      console.log(error.msg);
-            seterror(error.message)
-        }
-        finally{
-            setloading(false)
-        }
+    
+  login(formData)
         
         
         }
-        console.log(error?.msg);
+
         useEffect(() => {
-       if (error?.msg) {
+       if (error) {
         setshow(true);
         const timer=setTimeout(()=>{
             setshow(false)
         },5000)
         return ()=>clearTimeout(timer)
        }
-     
-        }, [error?.msg])
-        
+       if (isSuccess) {
+  router.push("/")
+      }
+        }, [error,isSuccess])
+       
   return (
     <Suspense fallback={<h2>Loading ....</h2>}>
     <div  className='flex items-center h-screen justify-center'>
@@ -114,14 +76,13 @@ console.log(page);
                <form  onSubmit={handleSubmit} className='mb-6'>
                {
                     show &&  <p className='mt-3 mb-3 text-red-500'>
-               {error?.msg}
+               {error?.message}
                     </p>
                  
                 }
 
-
 {
-    loading && <Suspense fallback={<p className='mt-3 mb-3 '>
+   isLoading && <Suspense fallback={<p className='mt-3 mb-3 '>
     Loading....
          </p>}> <p className='mt-3 mb-3 '>
     Loading....
@@ -132,9 +93,9 @@ console.log(page);
 
 <p className='grid mb-2'>
     <label htmlFor="" className='mb-2 text-blue-950'>Email</label>
-    <input type="email" value={email} onChange={(e)=>setemail(e.target.value)}  placeholder='Enter your email' className='py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md   '/>
+    <input type="email" value={formData.email} onChange={(e)=>setformData({...formData,email:e.target.value})}  placeholder='Enter your email' className='py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md   '/>
 </p>
-<p className='grid mt-2'>
+<div className='grid mt-2'>
     <p className='flex justify-between align-middle'>
     <label htmlFor="" className='mb-2 text-blue-950'>Password</label>
     <label htmlFor="">
@@ -146,19 +107,19 @@ console.log(page);
  
 
 
-<div className='relative'>
-<input value={password} onChange={(e)=>setpassword(e.target.value)} type={showPassword ? "text":"password"}  placeholder='Enter your password' className='w-full pl-4 pr-10 py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
+<p className='relative'>
+<input value={formData.password} onChange={(e)=>setformData({...formData,password:e.target.value})}  type={showPassword ? "text":"password"}  placeholder='Enter your password' className='w-full pl-4 pr-10 py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
 
 <span onClick={togglePassword} className='absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer'>
 {
     showPassword ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>
 }
 </span>
-</div>
+</p>
 
   
 
-</p>
+</div>
 
 <p className='mb-3 grid justify-center mt-5 w-full'>
     <button className='border-2 border-blue-500 bg-blue-500 py-2 px-40 rounded-md text-white cursor-pointer'>
