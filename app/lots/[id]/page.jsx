@@ -34,7 +34,7 @@ let previousRoute=usePreviousRoute();
 let queryClient=useQueryClient();
 console.log(previousRoute);
     const {id}=use(params);
-    const {session}=getSession();
+    
     let userId=session?.payload._id;
     let signature=session?.token;
 
