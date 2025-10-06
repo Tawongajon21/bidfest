@@ -3,7 +3,7 @@ import React from 'react'
 import { useQuery,useMutation,useQueryClient } from "@tanstack/react-query";
 import { fetchLot } from '../../../helpers/fetchLot';
 import {use} from "react"
-import {getSession} from "@/middleware/useSession"
+import { useSession,clearSession,getSession, useClearSession } from '@/middleware/useSession'
 import { useEffect } from 'react';
 import { useRef,useState } from 'react';
 import ImageComponent from './Image';
@@ -22,7 +22,14 @@ import {updateBid} from "@/helpers/updateBid";
 import LotLoadingSkeleton from './LotLoadingSkeleton';
 import AuctionTimer from '@/components/AuctionTimer';
 function Page({params}) {
-
+  const [session, setsession] = useState(null);
+  useEffect(() => {
+    
+  let sessionData= getSession();
+  setsession(sessionData)
+   
+  }, [])
+  
 let previousRoute=usePreviousRoute();
 let queryClient=useQueryClient();
 console.log(previousRoute);
