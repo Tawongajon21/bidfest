@@ -1,9 +1,4 @@
 import React from 'react'
-import Wrapper from "./Wrapper"
-
-import {baseUrl,imageServerUrl} from "@/urls"
-
-
 
 export async function fetchLot(id){
    
@@ -36,4 +31,3 @@ async function Page({params}) {
   )
 }
 
-export default Page
