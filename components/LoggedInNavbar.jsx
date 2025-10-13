@@ -67,7 +67,9 @@ const [message, setmessage] = useState("")
    
     const [audioAllowed, setaudioAllowed] = useState(false)
     const [showNotifications, setshowNotifications] = useState(false)
+
     useEffect(() => {
+       
         if(session){
             const socketIo=io(serverUrl,{
                 auth:{

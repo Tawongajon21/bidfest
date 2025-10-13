@@ -3,6 +3,11 @@ export async function fetchNotifications(cursor=null){
 
     let token=localStorage.getItem("signature")
 console.log(token);
+if(token === null){
+  return {data:[]}
+}
+
+
     if (token!==null) {
       let res=await fetch(`${baseUrl}notification/get-notifications?cursor=${cursor||""}`,{
        
@@ -15,7 +20,8 @@ console.log(token);
 console.log(json);
   return json
     }
-    return {data:[]}
+
+
 
 
  

@@ -7,7 +7,7 @@ import LoggedInNavbar from "@/components/LoggedInNavbar"
 function Navbar() {
     const session=useSession();
 
-console.log( session?.data !== null);
+console.log( session?.data );
 
 
   return (

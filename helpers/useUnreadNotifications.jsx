@@ -9,18 +9,23 @@ import {baseUrl,imageServerUrl} from "../urls"
 export async function fetchNotifications(){
 
     let token=localStorage.getItem("signature")
-    let res=await fetch(`${baseUrl}notification/get-notifications`,{
+    if (token===null) {
+        return {data:[]}
+    }else{
+        let res=await fetch(`${baseUrl}notification/get-notifications`,{
        
-        headers:{
-            Authorization : `Bearer ${token}`
-        }
-    })
+            headers:{
+                Authorization : `Bearer ${token}`
+            }
+        })
+    
+      let json=await res.json();
+    console.log(json.unreadCount);
+      return json.unreadCount
+    
+     
+    }
 
-  let json=await res.json();
-console.log(json.unreadCount);
-  return json.unreadCount
-
- 
 
 }
 
