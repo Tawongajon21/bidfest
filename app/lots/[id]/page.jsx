@@ -2,7 +2,7 @@
 import React from 'react'
 import { useQuery,useMutation,useQueryClient } from "@tanstack/react-query";
 import { fetchLot } from '../../../helpers/fetchLot';
-import {use} from "react"
+
 import {useSession} from "@/middleware/useSession"
 import { AiOutlineEye ,   AiOutlineEyeInvisible } from 'react-icons/ai'
 import { useEffect } from 'react';
