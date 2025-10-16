@@ -456,7 +456,7 @@ refetch()
  
  <p className='mt-[-15px]'>
  <FiX onClick={()=>{
-    setshowBidConfirmation(!showBidConfirmation)
+    setshowBidConfirmation(false)
  }} className='text-red-500 font-bold cursor-pointer' size={20}/>
  </p>
  </p>
@@ -466,19 +466,20 @@ You have placed your bid successfully, you can decide either to stay on this pag
  </p>
  
  <p className='flex justify-between sm:justify-between gap-5'>
-   <button  onClick={()=>{
+   <button  onClick={()=> redirect("/personalbids") }  
+            
           
-               window.location.pathname="/personalbids"
-           
-           
-   }} className="bg-[#4f46e5] text-white px-4 rounded-md py-2 cursor-pointer">
+   className="bg-[#4f46e5] text-white px-4 rounded-md py-2 cursor-pointer">
        Go to my bids page
    </button>
    <button onClick={()=>{
        refetch()
        setIsEdit(false)
        setbidEdited(false)
-  setshowBidConfirmation(!showBidConfirmation)
+  setshowBidConfirmation(false)
+
+
+
   
        }} className='border-2 border-[#4f46e5] rounded-md text-[#4f46e5] px-4 py-2 cursor-pointer'>
       Remain on this page
