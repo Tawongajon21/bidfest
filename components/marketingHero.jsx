@@ -64,7 +64,7 @@ console.log(data);
           <Link 
             href="/searchpage" 
             style={{ backgroundColor: "#4f46e5" }} 
-            className='text-white px-8 sm:px-12 md:px-16 py-2.5 md:py-3 mt-2 md:mt-4 tracking-wide rounded-md cursor-pointer font-semibold hover:opacity-90 transition-opacity inline-block text-sm sm:text-base'
+            className='text-white z-100000 px-8 sm:px-12 md:px-16 py-2.5 md:py-3 mt-2 md:mt-4 tracking-wide rounded-md cursor-pointer font-semibold hover:opacity-90 transition-opacity inline-block text-sm sm:text-base'
           >
             Let's Go Bidding
           </Link>
