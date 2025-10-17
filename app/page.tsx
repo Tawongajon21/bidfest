@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "BidFirst -  Trusted platform for smart buyers and serious sellers.",
   description: "Join Bidfirst today and discover a world of online and onsite auctions.Easy ,secure and efficient bidding for buyers and sellers.",
   icons:{
-    icon: "/public/images/logo.jpg"
+    icon: "/favicon.svg"
   }
 };
 
