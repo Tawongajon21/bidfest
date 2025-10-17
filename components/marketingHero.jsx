@@ -39,16 +39,21 @@ console.log(data);
 
 
     </div>
-<div className='flex'>
-<div className=''>
-    <h2 className="px-13 font-bold text-center   md:py-30 text-6xl     md:tracking-wide md:leading-[1.4] md:-mb-25 md:font-extrabold">
+<div className='flex flex-col md:flex-row items-center justify-center gap-6 md:gap-0 '>
+<div className='w-full md:w-1/2 px-4 sm:px-6 md:px-8 py-8 md:py-16'>
+    
+    <h2 className="font-bold text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl md:tracking-wide md:leading-[1.4] md:font-extrabold">
     Your Auction Journey  <br />
     Starts Here
      <span style={{
         color:"#4f46e5"
      }} > Bid First</span> 
 </h2>
-<p className='px-15  text-center flex justify-center' style={{
+      <p className='text-center mt-4 sm:mt-5 md:mt-6 text-sm sm:text-base md:text-lg leading-relaxed'>
+          Trusted platform for smart buyers and serious sellers
+        </p>
+    
+<p className='px-15  text-center flex justify-center text-center mt-4 sm:mt-5 md:mt-6 text-sm sm:text-base md:text-lg leading-relaxed' style={{
     fontSize:"17px"
 }}>
     <span className='w-[95%]'>
@@ -56,14 +61,16 @@ console.log(data);
     </span>
 
 </p>
-<p className='px-15 flex justify-center'> 
-<Link href="/searchpage" style={{
-        backgroundColor:"#4f46e5"
-     }} className=' text-white px-15  z-100   py-2 mt-4 tracking-wide rounded-md cursor-pointer '>
-    Let's Go Bidding
-</Link>
 
-</p>
+        <div className='flex justify-center mt-6 md:mt-8'>
+          <Link 
+            href="/searchpage" 
+            style={{ backgroundColor: "#4f46e5" }} 
+            className='text-white px-8 sm:px-12 md:px-16 py-2.5 md:py-3 mt-2 md:mt-4 tracking-wide rounded-md cursor-pointer font-semibold hover:opacity-90 transition-opacity inline-block text-sm sm:text-base'
+          >
+            Let's Go Bidding
+          </Link>
+        </div>
 
     </div>
     <div className='hidden md:block'>
