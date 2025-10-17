@@ -49,9 +49,7 @@ console.log(data);
         color:"#4f46e5"
      }} > Bid First</span> 
 </h2>
-      <p className='text-center mt-4 sm:mt-5 md:mt-6 text-sm sm:text-base md:text-lg leading-relaxed'>
-          Trusted platform for smart buyers and serious sellers
-        </p>
+  
     
 <p className='px-15  text-center flex justify-center text-center mt-4 sm:mt-5 md:mt-6 text-sm sm:text-base md:text-lg leading-relaxed' style={{
     fontSize:"17px"
