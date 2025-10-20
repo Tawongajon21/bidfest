@@ -180,8 +180,73 @@ See More
 
 
 
+  <div className=' px-13 flex gap-14 flex-wrap  justify-center mb-8 mt-4'>
+      <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
+      <div className="w-full max-w-sm bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+        
+        <div className="relative bg-gradient-to-br from-indigo-50 to-blue-50 h-64 flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-blue-500/10"></div>
+          <div className="relative z-10 w-48 h-48 bg-white rounded-full shadow-md flex items-center justify-center">
+            <div className="text-indigo-600 text-6xl">📦</div>
+          </div>
+        </div>
 
+     
+        <div className="p-6 space-y-4">
+      
+          <div className="flex items-center gap-2">
+            <span className="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">
+              Popular
+            </span>
+          </div>
 
+    
+          <div>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">Premium Product</h3>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              High-quality product designed for modern professionals who value performance and elegance.
+            </p>
+          </div>
+
+     
+          <div className="bg-gray-50 rounded-lg p-4">
+            <div className="flex items-baseline gap-2 mb-1">
+              <span className="text-3xl font-bold text-gray-900">$99</span>
+              <span className="text-sm text-gray-500 line-through">$149</span>
+            </div>
+            <p className="text-sm text-green-600 font-medium">Save 34%</p>
+          </div>
+
+       
+          <ul className="space-y-2 text-sm text-gray-700">
+            <li className="flex gap-2">
+              <span className="text-indigo-600">✓</span>
+              <span>Free worldwide shipping</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-indigo-600">✓</span>
+              <span>30-day money back guarantee</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-indigo-600">✓</span>
+              <span>24/7 customer support</span>
+            </li>
+          </ul>
+
+          {/* Button */}
+          <button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 mt-6">
+           
+            Add to Cart
+          </button>
+
+     
+          <button className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 font-semibold py-2 px-4 rounded-lg transition-colors duration-200">
+            Learn More
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
