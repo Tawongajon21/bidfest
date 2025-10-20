@@ -60,7 +60,7 @@ console.log(data);
 
 </p>
 
-        <div className='mt-6'
+        <div className='mt-6'>
           <Link 
             href="/searchpage" 
             style={{ backgroundColor: "#4f46e5" }} 
