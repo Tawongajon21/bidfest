@@ -28,7 +28,7 @@ function MarketingHero() {
 console.log(data);
   return (
     <>
-       <div className='h-120 bg-cover bg-center bg-no-repeat  z-100' >
+    <div className='h-120 bg-cover bg-center bg-no-repeat  z-100' >
     <div className="absolute left-0 w-full h-full " 
     style={{
         background:"linear-gradient(to right,#fff, #e5f2ff",
@@ -39,18 +39,15 @@ console.log(data);
 
 
     </div>
-<div className='flex '>
+<div className='flex'>
 <div className=''>
-    
-    <h2 className="px-13 font-bold text-center md:py-30 text-6xl md:tracking-wide md:leading-[1.4] md:mb-25 md:font-extrabold">
+    <h2 className="px-13 font-bold text-center   md:py-30 text-6xl     md:tracking-wide md:leading-[1.4] md:-mb-25 md:font-extrabold">
     Your Auction Journey  <br />
     Starts Here
      <span style={{
         color:"#4f46e5"
      }} > Bid First</span> 
 </h2>
-  
-    
 <p className='px-15  text-center flex justify-center' style={{
     fontSize:"17px"
 }}>
@@ -59,16 +56,14 @@ console.log(data);
     </span>
 
 </p>
+<p className='px-15 flex justify-center'> 
+<Link href="/searchpage" style={{
+        backgroundColor:"#4f46e5"
+     }} className=' text-white px-8  z-100   py-2 mt-4 tracking-wide rounded-md cursor-pointer md:px-15 sm:px-10'>
+    Let's Go Bidding
+</Link>
 
-        <div className='mt-6'>
-          <Link 
-            href="/searchpage" 
-            style={{ backgroundColor: "#4f46e5" }} 
-            className='text-white z-100000 px-6 sm:px-10 py-3 rounded-md font-medium transition cursor-pointer'
-          >
-            Let's Go Bidding
-          </Link>
-        </div>
+</p>
 
     </div>
     <div className='hidden md:block'>
