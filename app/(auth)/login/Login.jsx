@@ -51,7 +51,7 @@ console.log(error?.message);
   return (
     <Suspense fallback={<h2>Loading ....</h2>}>
     <div  className='flex items-center h-screen justify-center'>
-        <div className='grid justify-center px-3 py-5' style={{
+        <div className='grid justify-center px-3 py-5  dark:shadow-gray-800' style={{
             boxShadow:"0 0 10px rgba(0,0,0,0.2)"
         }}>
            <h2 className='flex justify-center text-3xl text-blue-950 font-bold dark:text-[#4f46e5] '>
