@@ -169,7 +169,7 @@ const {mutate:markRead}=useMutation(markNotificationRead,{
 {
     session && <div className="md:hidden flex justify-evenly   rounded-full align-middle content-center items-center gap-4" >
 
- <Link href="/searchpage" className=''>
+ <Link href="/searchpage" className='dark:text-gray-100'>
  <IoSearchOutline  size ={20}/> 
 
  </Link>
@@ -177,7 +177,7 @@ const {mutate:markRead}=useMutation(markNotificationRead,{
 
 
  <div className='relative group'>
- <IoNotificationsOutline onClick={toggleNotifications}  size ={20}/> 
+ <IoNotificationsOutline onClick={toggleNotifications} className='dark:text-gray-100'  size ={20}/> 
  {
     unreadNotifications >0 &&  <span className='absolute -top-4 -right-4 bg-red-500 text-white rounded-full px-[8px] py-[4px] text-xs'>
     {unreadNotifications}
@@ -197,7 +197,7 @@ const {mutate:markRead}=useMutation(markNotificationRead,{
 
 {
 unreadNotifications === 0 ? <div className='pl-4 mb-4'>
- <h2>
+ <h2 className='dark:text-gray-100'>
     You have no new notifications at the moment,please check again later
  </h2>
  <div className='flex justify-center'>
@@ -211,7 +211,7 @@ unreadNotifications === 0 ? <div className='pl-4 mb-4'>
     markRead(item._id)
 }} className={`
 
-pl-3 flex align-middle items-center w-[100%] mb-3  cursor-pointer 
+pl-3 flex align-middle items-center w-[100%] mb-3  cursor-pointer dark:text-gray-100
 ${item.read===true ? "bg-white" : "bg-blue-100"}
 
 `}>
@@ -242,7 +242,7 @@ ${item.read===true ? "bg-white" : "bg-blue-100"}
 View
 </Link>
     </p>  
-    <p className='text-sm mt-2 pl-2 text-gray-500'>
+    <p className='text-sm mt-2 pl-2 text-gray-500 dark:text-gray-100'>
         {
           timeAgo(item?.createdAt)
         }
@@ -285,7 +285,7 @@ View
 </p>
     <p className='relative group'>
     <button onClick={()=>settoggleDropdown(!toggleDropdown)} className='flex text-lg gap-2 align-middle items-center cursor-pointer ' >
-<FaGavel size ={20}/> 
+<FaGavel className='dark:text-gray-100' size ={20}/> 
 
     <HiChevronDown size ={20}/> 
 
@@ -297,13 +297,13 @@ View
     <Link href="/personalbids" onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
-    }} className='mt-2'>
+    }} className='mt-2 dark:text-gray-100'>
         Your Bids
     </Link>
     <Link href="/upcomingauctions"  onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
-    }}   className='mt-2'>
+    }}   className='mt-2 dark:text-gray-100'>
     Upcoming Auctions
     </Link>
     <Link onClick={()=>{
@@ -316,14 +316,14 @@ View
     <Link onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
-    }} href="/onsiteauctions" className='mt-2 mb-4'>
+    }} href="/onsiteauctions" className='mt-2 mb-4 dark:text-gray-100'>
    Onsite Auctions
     </Link>
   
     <Link onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
-    }} href="/onlineauctions" className='mt-2 mb-4'>
+    }} href="/onlineauctions" className='mt-2 mb-4  dark:text-gray-100'>
     Online Auctions
     </Link>
   
@@ -356,14 +356,14 @@ View
     ()=>handleLogout()
  
     
-    } className='mt-2 cursor-pointer z-100'>
+    } className='mt-2 cursor-pointer z-100 dark:text-gray-100'>
         Logout
     </button>
 
 
     <Link href="/" onClick={()=>{
         setpersonalBar(!personalBar)
-    }} className='mt-2'>
+    }} className='mt-2 dark:text-gray-100'>
  Contact Us
     </Link>
 
@@ -385,7 +385,7 @@ View
     <li >
 <Link className='flex text-lg gap-3 align-middle items-center text-gray-900' href="/searchpage">
 <IoSearchOutline size ={20}/> 
-    <b className='text-gray-900'>
+    <b className='text-gray-900 dark:text-gray-100'>
   Search
     </b>
 
@@ -395,7 +395,7 @@ View
 <div className='flex text-lg gap-1.5 align-middle items-center cursor-pointer' onClick={toggleNotifications} >
 <IoNotificationsOutline size ={20}/> 
 <div className='flex  align-bottom'>
-<b className=' text-gray-900'>
+<b className=' text-gray-900 dark:text-gray-100'>
     Notifications
     </b>
 
@@ -429,7 +429,7 @@ unreadNotifications > 0 &&  <div style={{
 </div>
 {
 unreadNotifications === 0 ? <div className='pl-4 mb-4'>
-<h2 className='mb-2'>
+<h2 className='mb-2 dark:text-gray-100'>
    You have no new notifications at the moment,please check again later
 </h2>
 <div className='flex justify-center'>
@@ -460,12 +460,12 @@ item.lot.lotImages?.map((item,index)=>{
     }
 
 <div>
-<p className='text-sm pl-2 text-gray-500 mt-2'>
+<p className='text-sm pl-2 text-gray-500 mt-2 dark:text-gray-100'>
 {item?.message} <Link className='text-blue-800' href="/personalbids">
 View
 </Link>
     </p>  
-    <p className='text-sm mt-2 pl-2 text-gray-500'>
+    <p className='text-sm mt-2 pl-2 text-gray-500 dark:text-gray-100'>
         {
           timeAgo(item?.createdAt)
         }
@@ -511,7 +511,7 @@ View
 <button onClick={()=>settoggleDropdown(!toggleDropdown)} className='flex text-lg gap-3 align-middle items-center cursor-pointer ' >
 <FaGavel size ={20}/> 
 <span className='flex align-middle items-center gap-1'>
-<b className=' text-gray-900'>
+<b className=' text-gray-900 dark:text-gray-100'>
    Auctions
     </b>
     <HiChevronDown size ={20}/> 
@@ -521,19 +521,19 @@ View
 </button>
 {
     toggleDropdown && <div className='absolute mt-2 grid justify-center w-40 px-3 shadow-lg bg-white gap-3 left-0 right-0  z-100'>
-    <Link onClick={()=>settoggleDropdown(!toggleDropdown)} href="/personalbids" className='mt-2  text-gray-900'>
+    <Link onClick={()=>settoggleDropdown(!toggleDropdown)} href="/personalbids" className='mt-2  text-gray-900 dark:text-gray-100'>
         Your Bids
     </Link>
-    <Link onClick={()=>settoggleDropdown(!toggleDropdown)}  className='mt-2  text-gray-900' href="/upcomingauctions">
+    <Link onClick={()=>settoggleDropdown(!toggleDropdown)}  className='mt-2  text-gray-900 dark:text-gray-100' href="/upcomingauctions">
     Upcoming Auctions
     </Link>
-    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900' href="/liveauctions">
+    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900 dark:text-gray-100' href="/liveauctions">
     Live Auctions
     </Link>
-    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900' href="/onlineauctions">
+    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900 dark:text-gray-100' href="/onlineauctions">
     Online Auctions
     </Link>
-    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900' href="/onsiteauctions">
+    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900 dark:text-gray-100' href="/onsiteauctions">
     Onsite Auctions
     </Link>
   
@@ -573,7 +573,7 @@ View
         Logout
     </button>
 
-    <Link href="/hello" className='mt-2 mb-3  text-gray-900'>
+    <Link href="/hello" className='mt-2 mb-3  text-gray-900 dark:text-gray-100'>
    Contact Us
     </Link>
    
@@ -604,38 +604,38 @@ View
 {
     isOpen && <div className="shadow transition duration-1000 ease-in  grid justify-center top-1  z-50 list-none gap-5 align-center ">
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/liveauctions  ">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/liveauctions  ">
 Live Auctions
 </Link>
     </li>
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/upcomingauctions">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/upcomingauctions">
 Upcoming Auctions
 </Link>
     </li>
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/onlineauctions">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/onlineauctions">
 Online Auctions
 </Link>
     </li>
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/onsiteauctions">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/onsiteauctions">
 Onsite Auctions
 </Link>
     </li>
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/">
 Contact us
 </Link>
     </li>
     <li className='text-center'>
-    <Link href="/login" className='text-lg border border-solid  border-blue-500 px-8 py-1.25  text-blue-500 rounded-sm'>
+    <Link href="/login" className='text-lg border border-solid  border-blue-500 px-8 py-1.25  text-blue-500 rounded-sm dark:text-gray-100'>
        Login
     </Link>
 
     </li>
     <li className='mb-6 text-center'>
-    <Link href="/register"  className='text-lg border border-solid  border-blue-500 px-8 py-1.25 bg-blue-500 text-white rounded-sm'>
+    <Link href="/register"  className='text-lg border border-solid  border-blue-500 px-8 py-1.25 bg-blue-500 text-white rounded-sm dark:text-gray-100'>
  Signup
 </Link>
     </li>
