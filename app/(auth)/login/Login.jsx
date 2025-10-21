@@ -54,7 +54,7 @@ console.log(error?.message);
         <div className='grid justify-center px-3 py-5' style={{
             boxShadow:"0 0 10px rgba(0,0,0,0.2)"
         }}>
-           <h2 className='flex justify-center text-3xl text-blue-950 font-bold dark:text-blue-500'>
+           <h2 className='flex justify-center text-3xl text-blue-950 font-bold dark:text-[#4f46e5] '>
             BidFest
             </h2> 
             <main className='mt-10 grid justify-center'> 
@@ -93,7 +93,7 @@ console.log(error?.message);
 
 <p className='grid mb-2'>
     <label htmlFor="" className='mb-2 text-blue-950 dark:text-gray-100'>Email</label>
-    <input type="email" value={formData.email} onChange={(e)=>setformData({...formData,email:e.target.value})}  placeholder='Enter your email' className='py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md   '/>
+    <input type="email" value={formData.email} onChange={(e)=>setformData({...formData,email:e.target.value})}  placeholder='Enter your email' className='py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md  dark:focus:border-[text-[#4f46e5] dark:focus:ring-[#4f46e5]'/>
 </p>
 <div className='grid mt-2'>
     <p className='flex justify-between align-middle'>
@@ -108,7 +108,7 @@ console.log(error?.message);
 
 
 <p className='relative'>
-<input value={formData.password} onChange={(e)=>setformData({...formData,password:e.target.value})}  type={showPassword ? "text":"password"}  placeholder='Enter your password' className='w-full pl-4 pr-10 py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
+<input value={formData.password} onChange={(e)=>setformData({...formData,password:e.target.value})}  type={showPassword ? "text":"password"}  placeholder='Enter your password' className='w-full pl-4 pr-10 py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:focus:border-[text-[#4f46e5] dark:focus:ring-[#4f46e5]'/>
 
 <span onClick={togglePassword} className='absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer'>
 {
@@ -122,7 +122,8 @@ console.log(error?.message);
 </div>
 
 <p className='mb-3 grid justify-center mt-5 w-full'>
-    <button className='border-2 border-blue-500 bg-blue-500 py-2 px-40 rounded-md text-white cursor-pointer'>
+  
+    <button className='border-2 border-[#4f46e5] bg-[#4f46e5] py-2 px-40 rounded-md text-white cursor-pointer '>
         Sign in
     </button>
 </p>
