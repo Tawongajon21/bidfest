@@ -126,7 +126,7 @@ console.log(error?.message);
         /*   text-white px-8  z-100   py-2 mt-4 tracking-wide rounded-md cursor-pointer md:px-15 sm:px-10*/
     }
 
-    <button className='border-2 border-[#4f46e5] bg-[#4f46e5] py-2 px-40 md:px-15 sm:px-10 rounded-md text-white cursor-pointer '>
+    <button className='border-2 border-[#4f46e5] bg-[#4f46e5] py-2 px-20 md:px-25 sm:px-40 rounded-md text-white cursor-pointer '>
         Sign in
     </button>
 </p>
