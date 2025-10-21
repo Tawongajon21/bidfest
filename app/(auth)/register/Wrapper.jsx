@@ -105,14 +105,14 @@ useEffect(() => {
         <div className='grid justify-center px-3 py-5' style={{
             boxShadow:"0 0 10px rgba(0,0,0,0.2)"
         }}>
-           <h2 className='flex justify-center text-3xl text-blue-950 font-bold'>
+           <h2 className='flex justify-center text-3xl text-blue-950 font-bold dark:text-[#4f46e5]'>
             BidFest
             </h2> 
             <main className='mt-10 grid justify-center'> 
-                <h3 className='flex justify-start text-[20px] text-blue-950 mb-3'>
+                <h3 className='flex justify-start text-[20px] text-blue-950 mb-3 dark:text-gray-100'>
                     Welcome to BidFest 👋
                 </h3>
-                <p className='flex justify-start text-blue-950 w-[85%]'>
+                <p className='flex justify-start text-blue-950 w-[85%] dark:text-gray-100'>
                     Please create your account and start the adventure
                 </p>
             </main>
@@ -133,19 +133,19 @@ useEffect(() => {
 
                 }
 <p className='grid mb-2'>
-    <label htmlFor="" className='mb-2 text-blue-950'>Name</label>
+    <label htmlFor="" className='mb-2 text-blue-950 dark:text-gray-100'>Name</label>
     <input type="name" value={name} onChange={(e)=>setname(e.target.value)}   placeholder='Enter your name' className='py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md   '/>
 </p>
 <p className='grid mb-2'>
-    <label htmlFor="" className='mb-2 text-blue-950'>Surname</label>
+    <label htmlFor="" className='mb-2 text-blue-950 dark:text-gray-100'>Surname</label>
     <input type="text" value={surname} onChange={(e)=>setsurname(e.target.value)}   placeholder='Enter your surname' className='py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md   '/>
 </p>
 <p className='grid mb-2'>
-    <label htmlFor="" className='mb-2 text-blue-950'>Phone Number</label>
+    <label htmlFor="" className='mb-2 text-blue-950 dark:text-gray-100'>Phone Number</label>
     <input type="tel" value={phone} onChange={(e)=>setphone(formatPhoneNumber(e.target.value))}   placeholder='Enter your phone number' className='py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md   '/>
 </p>
 <p className='grid mb-2'>
-    <label htmlFor="" className='mb-2 text-blue-950'>Email</label>
+    <label htmlFor="" className='mb-2 text-blue-950 dark:text-gray-100'>Email</label>
     {
     !valid && <p className='text-red-500 mt-2 mb-2'>
     Invalid email
@@ -157,7 +157,7 @@ useEffect(() => {
 </p>
 <p className='grid mt-2'>
     <p className='flex justify-between align-middle'>
-    <label htmlFor="" className='mb-2 text-blue-950'>Password</label>
+    <label htmlFor="" className='mb-2 text-blue-950 dark:text-gray-100'>Password</label>
 
     </p>
  
@@ -177,7 +177,7 @@ useEffect(() => {
 </p>
 <p className='grid mt-2'>
     <p className='flex justify-between align-middle'>
-    <label htmlFor="" className='mb-2 text-blue-950'>Confirm Password</label>
+    <label htmlFor="" className='mb-2 text-blue-950 dark:text-gray-100'>Confirm Password</label>
 
     </p>
  
@@ -197,7 +197,7 @@ useEffect(() => {
 </p>
 
 <p className='mb-3 grid justify-center mt-5 w-full'>
-    <button className='border-2 border-blue-500 bg-blue-500 py-2 px-40 rounded-md text-white cursor-pointer'>
+    <button className='border-2 border-[#4f46e5] bg-[#4f46e5] py-2 px-40 rounded-md text-white cursor-pointer'>
         Sign up
     </button>
 </p>
