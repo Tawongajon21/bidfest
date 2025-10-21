@@ -9,7 +9,7 @@ function UpcomingHeader() {
      }} >Sales</span></h2>
 </header>
 <main className='w-full flex justify-center mt-3'>
-<p  className='flex text-gray-900  text-[17px] justify-center text-center mt-3 w-65 mb-8 md:w-90 md:flex md:justify-center'>
+<p  className='dark:text-gray-100 flex text-gray-900  text-[17px] justify-center text-center mt-3 w-65 mb-8 md:w-90 md:flex md:justify-center'>
     Have a glance of what is on the auction
 </p>
 </main>
