@@ -303,7 +303,9 @@ setsubmittedSearch((prev)=>(
 console.log(vehicleType);
 */
 
-}} key={cat}  className={`flex-1 min-w-[100px] border-1 px-4  min-h-[48px] bg-black  ${itemType === cat &&  "bg-[#4f46e5]"}     text-white cursor-pointer `}>
+}} key={cat}  className={`flex-1 min-w-[100px] border-1 px-4  min-h-[48px] bg-black  ${itemType === cat &&  "bg-[#4f46e5]"}     text-white cursor-pointer    dark:bg-gray-800/30 dark:backdrop-blur-sm dark:border-gray-700/50 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-indigo-600/20
+               dark:hover:border-indigo-500/50 dark:hover:text-white
+               dark:hover:shadow-lg dark:hover:shadow-indigo-500/30`}>
 {cat}
 </button>
 ))
