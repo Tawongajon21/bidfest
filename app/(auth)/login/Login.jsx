@@ -54,7 +54,7 @@ console.log(error?.message);
         <div className='grid justify-center px-3 py-5' style={{
             boxShadow:"0 0 10px rgba(0,0,0,0.2)"
         }}>
-           <h2 className='flex justify-center text-3xl text-blue-950 font-bold'>
+           <h2 className='flex justify-center text-3xl text-blue-950 font-bold dark:text-blue-500'>
             BidFest
             </h2> 
             <main className='mt-10 grid justify-center'> 
@@ -62,12 +62,12 @@ console.log(error?.message);
 
       
 
-                <h3 className='flex justify-start text-[20px] text-blue-950 mb-3'>
+                <h3 className='flex justify-start text-[20px] text-blue-950 mb-3 dark:text-gray-100'>
                     Welcome to BidFest 👋
                 </h3>
              
                 
-                <p className='flex justify-start text-blue-950 w-[85%]'>
+                <p className='flex justify-start text-blue-950 w-[85%] dark:text-gray-100'>
                     Please sign-in to your account and start the adventure
                 </p>
               
@@ -92,12 +92,12 @@ console.log(error?.message);
 
 
 <p className='grid mb-2'>
-    <label htmlFor="" className='mb-2 text-blue-950'>Email</label>
+    <label htmlFor="" className='mb-2 text-blue-950 dark:text-gray-100'>Email</label>
     <input type="email" value={formData.email} onChange={(e)=>setformData({...formData,email:e.target.value})}  placeholder='Enter your email' className='py-2 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md   '/>
 </p>
 <div className='grid mt-2'>
     <p className='flex justify-between align-middle'>
-    <label htmlFor="" className='mb-2 text-blue-950'>Password</label>
+    <label htmlFor="" className='mb-2 text-blue-950 dark:text-gray-100'>Password</label>
     <label htmlFor="">
         <Link href="/" className='text-blue-500'>
         Forgot Password?
@@ -126,7 +126,7 @@ console.log(error?.message);
         Sign in
     </button>
 </p>
-<p className='flex gap-1 justify-center'>
+<p className='flex gap-1 justify-center dark:text-gray-100'>
      <span>    New on our platform?   </span> <Link href="/register" className='text-blue-500'> Create an account</Link>
 </p>
                </form>
