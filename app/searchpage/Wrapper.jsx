@@ -268,7 +268,7 @@ Search
       }     
 <div className=' flex justify-center mt-4 flex-wrap'>
     <form onSubmit={handleSearch}>
-        <input onChange={(e)=>setsearchTerm(e.target.value)} type="text"  placeholder='Type your search here' className='w-80 md:w-120 py-2 border-black border-2 placeholder:text-1.5xl text-left pl-2'/>
+        <input onChange={(e)=>setsearchTerm(e.target.value)} type="text"  placeholder='Type your search here' className='w-80 md:w-120 py-2 border-black border-2 placeholder:text-1.5xl text-left pl-2 dark:border-white dark:border-2 dark:placeholder-white'/>
         <p className='grid align-center justify-center gap-3 md:flex align-center  mt-2 font-bold '>
             <button type="button" className='underline text-[18px]  cursor-pointer' onClick={()=>setopenAdvancedSearch(!openAdvancedSearch)}>
                 Switch to advanced search
