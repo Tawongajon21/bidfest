@@ -41,7 +41,7 @@ function Footer() {
 <section className='flex justify-evenly mt-4 md:gap-8'>
 <div className='' >
    
-        <p className='underline decoration-[#4f46e5] decoration-4  mb-3'>
+        <p className='underline decoration-[#4f46e5] decoration-4  mb-3 dark:text-gray-100'>
           <Link href="/">
           Shop
           </Link> 
@@ -95,7 +95,7 @@ function Footer() {
 <section className='flex justify-evenly mt-4 md:gap-8'>
 
     <div>
-        <p className='border-b-blue-500  underline decoration-[#4f46e5] decoration-4  mb-3 '>
+        <p className='border-b-blue-500  underline decoration-[#4f46e5] decoration-4  mb-3 dark:text-gray-100'>
            
 Discover
         
