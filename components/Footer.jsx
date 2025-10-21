@@ -6,34 +6,34 @@ function Footer() {
     let date= new Date();
     let year= date.getFullYear()
   return (
-    <footer className=' bg-indigo-50  text-[#0A2540] md:flex justify-between'>
+    <footer className=' bg-indigo-50  text-[#0A2540] md:flex justify-between dark:bg-black'>
      
         <header className='mt-6'>
 <div className='flex align-middle items-center gap-5 justify-evenly'>
-    <h2 className='text-3xl font-bold  mt-6'>
+    <h2 className='text-3xl font-bold  mt-6 dark:text-gray-100'>
         Bidfirst
     </h2>
     <ul className='flex gap-4  mt-6'>
         <li>
-<Link href="/"><FaInstagram size={30}/></Link>
+<Link href="/"><FaInstagram size={30} className='dark:text-gray-100'/></Link>
         </li>
         <li>
-<Link href="/"><FaTwitter size={30}/></Link>
+<Link href="/"><FaTwitter size={30} className='dark:text-gray-100'/></Link>
         </li>
         <li>
-<Link href="/"><FaFacebook size={30}/></Link>
+<Link href="/"><FaFacebook size={30} className='dark:text-gray-100'/></Link>
         </li>
         <li>
-<Link href="/"><FaLinkedin size={30}/></Link>
+<Link href="/"><FaLinkedin size={30} className='dark:text-gray-100'/></Link>
         </li>
     </ul>
   
 </div>
 <div className='flex justify-evenly mt-4 '>
-        <Link href="/contactus" className='border-2 border-[#4f46e5] py-2 px-8 cursor-pointer'>
+        <Link href="/contactus" className='border-2 border-[#4f46e5] py-2 px-8 cursor-pointer dark:text-gray-100'>
             Contact
         </Link>
-        <Link href="/faqs" className='border-2 border-[#0A2540] py-2 px-8 cursor-pointer'>
+        <Link href="/faqs" className='border-2 border-[#0A2540] py-2 px-8 cursor-pointer dark:text-gray-100'>
          Support
         </Link>
     </div>
@@ -49,33 +49,33 @@ function Footer() {
         
         </p>
         <p>
-            <Link href="/liveauctions">Live Auctions</Link>
+            <Link href="/liveauctions" className='dark:text-gray-100'>Live Auctions</Link>
         </p>
         <p>
-            <Link href="/upcomingauctions">Upcoming Auctions</Link>
+            <Link href="/upcomingauctions" className='dark:text-gray-100'>Upcoming Auctions</Link>
         </p>
         <p>
-            <Link href="/onlineauctions">Online Auctions</Link>
+            <Link href="/onlineauctions" className='dark:text-gray-100'>Online Auctions</Link>
         </p>
         <p>
-            <Link href="/onsiteauctions">Onsite Auctions</Link>
+            <Link href="/onsiteauctions" className='dark:text-gray-100'>Onsite Auctions</Link>
         </p>
         <p>
-            <Link href="/searchpage">Search</Link>
+            <Link href="/searchpage" className='dark:text-gray-100'>Search</Link>
         </p>
   
 </div>
 <div className='' >
    
         <p className='border-b-blue-500  underline decoration-[#4f46e5] decoration-4  mb-3 '>
-           <Link href="/">
+           <Link href="/" className='dark:text-gray-100'>
            Sell
            </Link>
 
         
         </p>
         <p>
-            <Link href="/">Sell your Vehicle</Link>
+            <Link href="/" className='dark:text-gray-100'>Sell your Vehicle</Link>
         </p>
     
    
@@ -101,17 +101,17 @@ Discover
         
         </p>
         <p>
-            <Link href="/faqs">Frequently Asked <br /> Questions</Link>
+            <Link href="/faqs" className='dark:text-gray-100'>Frequently Asked <br /> Questions</Link>
         </p>
    
         <p>
-            <Link href="/">Terms and Conditions</Link>
+            <Link href="/" className='dark:text-gray-100'>Terms and Conditions</Link>
         </p>
         <p>
-            <Link href="/privacypolicy">Privacy Policy</Link>
+            <Link href="/privacypolicy" className='dark:text-gray-100'>Privacy Policy</Link>
         </p>
         <p>
-            <Link href="/cookiepolicy">Cookie Policy</Link>
+            <Link href="/cookiepolicy" className='dark:text-gray-100'>Cookie Policy</Link>
         </p>
     </div>
 
@@ -119,7 +119,7 @@ Discover
 <div>
       
            
-        <p className='border-b-blue-500  underline decoration-[#4f46e5] decoration-4  mb-3 '>
+        <p className='border-b-blue-500  underline decoration-[#4f46e5] decoration-4  mb-3 dark:text-gray-100'>
            
           Company
                    
@@ -127,10 +127,10 @@ Discover
         
       
         <p>
-            <Link href="/">About Bidfest</Link>
+            <Link href="/" className='dark:text-gray-100'>About Bidfest</Link>
         </p>
         <p>
-            <Link href="/contactus">Contact Us</Link>
+            <Link href="/contactus" className='dark:text-gray-100'>Contact Us</Link>
         </p>
   
     </div>
@@ -148,7 +148,7 @@ Discover
 
    <div className='mt-2 grid '>
 <hr  className='md:hidden'/>
-<p className='grid justify-center md:mt-5'>
+<p className='grid justify-center md:mt-5 text-gray-100'>
 &copy; {year} Bidfirst. All Rights Reserved.
 </p>
 
