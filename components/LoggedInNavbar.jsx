@@ -291,7 +291,7 @@ View
 
 </button>
 {
-    toggleDropdown &&    <div className='absolute mt-2   grid justify-center w-40 px-6 shadow-lg bg-white gap-3 left-0 right-0 z-100 dark:bg-black '>
+    toggleDropdown &&    <div className='absolute mt-2   grid justify-center w-40 px-6 shadow-lg bg-white gap-3 left-0 right-0 z-100 dark:bg-white '>
     <Link href="/personalbids" onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
@@ -354,14 +354,14 @@ View
     ()=>handleLogout()
  
     
-    } className='mt-2 cursor-pointer z-100 dark:text-gray-100'>
+    } className='mt-2 cursor-pointer z-100 dark:text-gray-900'>
         Logout
     </button>
 
 
     <Link href="/" onClick={()=>{
         setpersonalBar(!personalBar)
-    }} className='mt-2 dark:text-gray-100'>
+    }} className='mt-2 dark:text-gray-900'>
  Contact Us
     </Link>
 
