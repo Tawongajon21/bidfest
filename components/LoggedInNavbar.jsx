@@ -148,9 +148,7 @@ const {mutate:markRead}=useMutation(markNotificationRead,{
 
   return (
 
-    <div style={{
-        backgroundColor:"#F9FAFB"
-    }}>
+    <div  className="bg-[#F9FAFB] dark:bg-black">
    <header className=' py-4' >
     <nav className='container flex justify-between items-center w-[92%] mx-auto'>
 <div className="cursor-pointer" > 
