@@ -33,7 +33,7 @@ function Footer() {
         <Link href="/contactus" className='border-2 border-[#4f46e5] py-2 px-8 cursor-pointer dark:text-gray-100'>
             Contact
         </Link>
-        <Link href="/faqs" className='border-2 border-[#0A2540] py-2 px-8 cursor-pointer dark:text-gray-100'>
+        <Link href="/faqs" className='border-2 border-[#4f46e5] py-2 px-8 cursor-pointer dark:text-gray-100'>
          Support
         </Link>
     </div>
