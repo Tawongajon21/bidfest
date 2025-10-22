@@ -383,7 +383,7 @@ View
     <li >
 <Link className='flex text-lg gap-3 align-middle items-center text-gray-900' href="/searchpage">
 <IoSearchOutline size ={20}/> 
-    <b className='text-gray-900 dark:text-gray-900'>
+    <b className='text-gray-900 dark:text-gray-100'>
   Search
     </b>
 
@@ -393,7 +393,7 @@ View
 <div className='flex text-lg gap-1.5 align-middle items-center cursor-pointer' onClick={toggleNotifications} >
 <IoNotificationsOutline size ={20}/> 
 <div className='flex  align-bottom'>
-<b className=' text-gray-900 dark:text-gray-900'>
+<b className=' text-gray-900 dark:text-gray-100'>
     Notifications
     </b>
 
@@ -509,7 +509,7 @@ View
 <button onClick={()=>settoggleDropdown(!toggleDropdown)} className='flex text-lg gap-3 align-middle items-center cursor-pointer ' >
 <FaGavel size ={20}/> 
 <span className='flex align-middle items-center gap-1'>
-<b className=' text-gray-900 dark:text-gray-900'>
+<b className=' text-gray-900 dark:text-gray-100'>
    Auctions
     </b>
     <HiChevronDown size ={20}/> 
@@ -571,7 +571,7 @@ View
         Logout
     </button>
 
-    <Link href="/hello" className='mt-2 mb-3  text-gray-900 dark:text-gray-900'>
+    <Link href="/hello" className='mt-2 mb-3  text-gray-900 dark:text-gray-100'>
    Contact Us
     </Link>
    
