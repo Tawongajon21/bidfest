@@ -178,7 +178,7 @@ Advanced Search
        Item Name
     </label>
  
-    <input  type='text' onChange={(e)=>setPropertyName(e.target.value)}  placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900'/>
+    <input  type='text' onChange={(e)=>setPropertyName(e.target.value)}  placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900 dark:text-black'/>
 
     </p>
     </p>
@@ -191,7 +191,7 @@ Advanced Search
  <select name="" id="" onChange={(e)=>{
     e.preventDefault()
     setitemType(e.target.value)
-    }} className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900'>
+    }} className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900 dark:text-black'>
 {
     itemTypes.map((item)=>(
 <option value={item}>{item}</option>
@@ -212,7 +212,7 @@ Advanced Search
        Minimmum Price
     </label>
  
-    <input onChange={(e)=>setMinPrice(e.target.value)}  type='number'   placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900'/>
+    <input onChange={(e)=>setMinPrice(e.target.value)}  type='number'   placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900 dark:text-black'/>
 
     </p>
     </p>
@@ -223,7 +223,7 @@ Advanced Search
         Maximum Price
     </label>
  
-    <input  type='number'  onChange={(e)=>setMaxPrice(e.target.value)}    placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900'/>
+    <input  type='number'  onChange={(e)=>setMaxPrice(e.target.value)}    placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900 dark:text-black'/>
 
     </p>
     </p>
