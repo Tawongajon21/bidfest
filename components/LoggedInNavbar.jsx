@@ -291,7 +291,7 @@ View
 
 </button>
 {
-    toggleDropdown &&    <div className='absolute mt-2   grid justify-center w-40 px-6 shadow-lg bg-white gap-3 left-0 right-0 z-100 '>
+    toggleDropdown &&    <div className='absolute mt-2   grid justify-center w-40 px-6 shadow-lg bg-white gap-3 left-0 right-0 z-100 dark:bg-black '>
     <Link href="/personalbids" onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
