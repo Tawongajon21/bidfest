@@ -381,8 +381,8 @@ View
 {
     session &&  <ul className="hidden  md:flex justify-center items-center content-center gap-7">
     <li >
-<Link className='flex text-lg gap-3 align-middle items-center text-gray-900' href="/searchpage">
-<IoSearchOutline size ={20}/> 
+<Link className='flex text-lg gap-3 align-middle items-center text-gray-900 dark:text-gray-100' href="/searchpage">
+<IoSearchOutline  size ={20}/> 
     <b className='text-gray-900 dark:text-gray-100'>
   Search
     </b>
