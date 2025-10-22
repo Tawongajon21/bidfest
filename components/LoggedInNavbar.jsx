@@ -295,33 +295,33 @@ View
     <Link href="/personalbids" onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
-    }} className='mt-2 dark:text-gray-100'>
+    }} className='mt-2 dark:text-gray-900'>
         Your Bids
     </Link>
     <Link href="/upcomingauctions"  onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
-    }}   className='mt-2 dark:text-gray-100'>
+    }}   className='mt-2 dark:text-gray-900'>
     Upcoming Auctions
     </Link>
     <Link onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
-    }} href="/liveauctions" className='mt-2 mb-4'>
+    }} href="/liveauctions" className='mt-2 mb-4 dark:text-gray-900'>
     Live Auctions
     </Link>
   
     <Link onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
-    }} href="/onsiteauctions" className='mt-2 mb-4 dark:text-gray-100'>
+    }} href="/onsiteauctions" className='mt-2 mb-4 dark:text-gray-900'>
    Onsite Auctions
     </Link>
   
     <Link onClick={()=>{
       settoggleDropdown(!toggleDropdown)
         
-    }} href="/onlineauctions" className='mt-2 mb-4  dark:text-gray-100'>
+    }} href="/onlineauctions" className='mt-2 mb-4  dark:text-gray-900'>
     Online Auctions
     </Link>
   
