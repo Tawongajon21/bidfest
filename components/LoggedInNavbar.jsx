@@ -383,7 +383,7 @@ View
     <li >
 <Link className='flex text-lg gap-3 align-middle items-center text-gray-900' href="/searchpage">
 <IoSearchOutline size ={20}/> 
-    <b className='text-gray-900 dark:text-gray-100'>
+    <b className='text-gray-900 dark:text-gray-900'>
   Search
     </b>
 
@@ -393,7 +393,7 @@ View
 <div className='flex text-lg gap-1.5 align-middle items-center cursor-pointer' onClick={toggleNotifications} >
 <IoNotificationsOutline size ={20}/> 
 <div className='flex  align-bottom'>
-<b className=' text-gray-900 dark:text-gray-100'>
+<b className=' text-gray-900 dark:text-gray-900'>
     Notifications
     </b>
 
@@ -509,7 +509,7 @@ View
 <button onClick={()=>settoggleDropdown(!toggleDropdown)} className='flex text-lg gap-3 align-middle items-center cursor-pointer ' >
 <FaGavel size ={20}/> 
 <span className='flex align-middle items-center gap-1'>
-<b className=' text-gray-900 dark:text-gray-100'>
+<b className=' text-gray-900 dark:text-gray-900'>
    Auctions
     </b>
     <HiChevronDown size ={20}/> 
@@ -519,19 +519,19 @@ View
 </button>
 {
     toggleDropdown && <div className='absolute mt-2 grid justify-center w-40 px-3 shadow-lg bg-white gap-3 left-0 right-0  z-100'>
-    <Link onClick={()=>settoggleDropdown(!toggleDropdown)} href="/personalbids" className='mt-2  text-gray-900 dark:text-gray-100'>
+    <Link onClick={()=>settoggleDropdown(!toggleDropdown)} href="/personalbids" className='mt-2  text-gray-900 dark:text-gray-900'>
         Your Bids
     </Link>
-    <Link onClick={()=>settoggleDropdown(!toggleDropdown)}  className='mt-2  text-gray-900 dark:text-gray-100' href="/upcomingauctions">
+    <Link onClick={()=>settoggleDropdown(!toggleDropdown)}  className='mt-2  text-gray-900 dark:text-gray-900' href="/upcomingauctions">
     Upcoming Auctions
     </Link>
-    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900 dark:text-gray-100' href="/liveauctions">
+    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900 dark:text-gray-900' href="/liveauctions">
     Live Auctions
     </Link>
-    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900 dark:text-gray-100' href="/onlineauctions">
+    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900 dark:text-gray-900' href="/onlineauctions">
     Online Auctions
     </Link>
-    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900 dark:text-gray-100' href="/onsiteauctions">
+    <Link  onClick={()=>settoggleDropdown(!toggleDropdown)} className='mt-2 mb-4  text-gray-900 dark:text-gray-900' href="/onsiteauctions">
     Onsite Auctions
     </Link>
   
@@ -571,7 +571,7 @@ View
         Logout
     </button>
 
-    <Link href="/hello" className='mt-2 mb-3  text-gray-900 dark:text-gray-100'>
+    <Link href="/hello" className='mt-2 mb-3  text-gray-900 dark:text-gray-900'>
    Contact Us
     </Link>
    
