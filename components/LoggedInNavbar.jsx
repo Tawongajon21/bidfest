@@ -571,7 +571,7 @@ View
         Logout
     </button>
 
-    <Link href="/hello" className='mt-2 mb-3  text-gray-900 dark:text-gray-100'>
+    <Link href="/hello" className='mt-2 mb-3  text-gray-900 dark:text-gray-900'>
    Contact Us
     </Link>
    
