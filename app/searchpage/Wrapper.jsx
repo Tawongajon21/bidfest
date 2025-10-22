@@ -156,7 +156,7 @@ console.log(userBids);
     }} className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md z-9999999">
 <p className='flex items-center content-center justify-between'>
     <p>
-    <h2 className="text-2xl font-semibold mb-4">
+    <h2 className="text-2xl font-semibold mb-4 dark:text-black">
 Advanced Search
 </h2>
     </p>
@@ -174,24 +174,24 @@ Advanced Search
     <p className='flex justify-between align-middle content-center'>
 
 <p className='w-full'>
-    <label htmlFor="">
+    <label htmlFor="" className="dark:text-black">
        Item Name
     </label>
  
-    <input  type='text' onChange={(e)=>setPropertyName(e.target.value)}  placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
+    <input  type='text' onChange={(e)=>setPropertyName(e.target.value)}  placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900'/>
 
     </p>
     </p>
     <p className='flex justify-between align-middle content-center'>
 
 <p className='w-full'>
-    <label htmlFor="">
+    <label htmlFor=""  className="dark:text-black">
        Item Type
     </label>
  <select name="" id="" onChange={(e)=>{
     e.preventDefault()
     setitemType(e.target.value)
-    }} className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'>
+    }} className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900'>
 {
     itemTypes.map((item)=>(
 <option value={item}>{item}</option>
@@ -208,22 +208,22 @@ Advanced Search
     <p className='flex justify-between align-middle content-center'>
 
 <p className='w-full'>
-    <label htmlFor="">
+    <label htmlFor="" className="dark:text-black">
        Minimmum Price
     </label>
  
-    <input onChange={(e)=>setMinPrice(e.target.value)}  type='number'   placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
+    <input onChange={(e)=>setMinPrice(e.target.value)}  type='number'   placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900'/>
 
     </p>
     </p>
     <p className='flex justify-between align-middle content-center'>
 
 <p className='w-full'>
-    <label htmlFor="">
+    <label htmlFor="" className="dark:text-black">
         Maximum Price
     </label>
  
-    <input  type='number'  onChange={(e)=>setMaxPrice(e.target.value)}    placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
+    <input  type='number'  onChange={(e)=>setMaxPrice(e.target.value)}    placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900'/>
 
     </p>
     </p>
