@@ -147,7 +147,7 @@ Discover
       
 
    <div className='mt-2 grid '>
-<hr  className='md:hidden'/>
+<hr  className='md:hidden dark:border-white'/>
 <p className='grid justify-center md:mt-5 text-gray-100'>
 &copy; {year} Bidfirst. All Rights Reserved.
 </p>
