@@ -17,7 +17,7 @@ function SearchBox() {
   return (
     <div style={{
       backgroundColor:"#14263c"
-    }} className='grid place-items-center  justify-center content-center items-center  h-50 text-white   z-100'>
+    }} className='grid place-items-center  justify-center content-center items-center  h-50 text-white   z-1000000'>
         <div>
         <h2 className=" text-3xl  md:text-4xl font-bold flex justify-center"  >
             Search Of Items
@@ -28,14 +28,14 @@ function SearchBox() {
             </input>
             
             <p className='flex justify-center gap-5 mt-4'>
-                <Link href="/searchpage" className='cursor-pointer border-3 border-b-white px-5 py-3'>
+                <Link href="/searchpage" className='cursor-pointer border-3 border-b-white px-5 py-3 z-100000000'>
                     Advanced Search
                 </Link>
     
                 <button style={{
        
         color:"#4f46e5"
-                }} type='submit' className='cursor-pointer border-3  px-17 py-3 '>
+                }} type='submit' className='cursor-pointer border-3  px-17 py-3 z-100000000'>
 <FiSearch className='cursor-pointer' size={20}/>
                 </button>
             </p>

@@ -120,7 +120,7 @@ return ()=>window.removeEventListener("scroll",handleScroll)
 const loadMore=()=>{
 
 }
-
+console.log(session)
 
 const {mutate:markAllAsRead,isLoading:refetchingLoading}= useMarkAllAsRead();
 

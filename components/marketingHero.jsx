@@ -28,7 +28,7 @@ function MarketingHero() {
 console.log(data);
   return (
     <>
-       <div className='h-120 sm:h-120 md:h-120  bg-cover bg-center bg-no-repeat  z-100' >
+    <div className='h-120 bg-cover bg-center bg-no-repeat  z-100' >
     <div className="absolute left-0 w-full h-full " 
     style={{
         background:"linear-gradient(to right,#fff, #e5f2ff",
@@ -177,13 +177,6 @@ See More
    
 
     </div>
-
-
-
-
-
-
-
 
 
 

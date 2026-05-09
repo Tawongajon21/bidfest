@@ -82,7 +82,7 @@ export default function LoggedOutNavbar({session}) {
 {
     !session &&  <ul className="hidden  md:flex justify-center items-center content-center gap-7">
          <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/searchpage">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/searchpage">
     <b>
     Search
     </b>
@@ -90,7 +90,7 @@ export default function LoggedOutNavbar({session}) {
 </Link>
     </li>
     <li>
-<Link className='text-lg' href="/liveauctions">
+<Link className='text-lg dark:text-gray-100' href="/liveauctions">
     <b>
     Live Auctions
     </b>
@@ -99,7 +99,7 @@ export default function LoggedOutNavbar({session}) {
     </li>
     <li>
 <Link className='text-lg' href="/upcomingauctions">
-    <b className='text-gray-900'>
+    <b className='text-gray-900 dark:text-gray-100'>
     Upcoming Auctions
     </b>
 
@@ -109,7 +109,7 @@ export default function LoggedOutNavbar({session}) {
     </li>
     <li>
     <Link className='text-lg' href="/onsiteauctions">
-    <b className='text-gray-900'>
+    <b className='text-gray-900 dark:text-gray-100'>
    Onsite Auctions
     </b>
 
@@ -117,7 +117,7 @@ export default function LoggedOutNavbar({session}) {
     </li>
     <li>
     <Link className='text-lg' href="/onlineauctions">
-    <b className='text-gray-900'>
+    <b className='text-gray-900 dark:text-gray-100'>
   Online Auctions
     </b>
 
@@ -160,32 +160,32 @@ export default function LoggedOutNavbar({session}) {
 {
     isOpen && <div className="shadow transition duration-1000 ease-in  grid justify-center top-1  z-50 list-none gap-5 align-center ">
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/searchpage">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/searchpage">
 Search
 </Link>
     </li>
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/liveauctions">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/liveauctions">
 Live Auctions
 </Link>
     </li>
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/upcomingauctions">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/upcomingauctions">
 Upcoming Auctions
 </Link>
     </li>
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/onlineauctions">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/onlineauctions">
 Online Auctions
 </Link>
     </li>
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/onsiteauctions">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/onsiteauctions">
 Onsite Auctions
 </Link>
     </li>
     <li className='text-center'>
-<Link className='text-lg text-gray-900' href="/">
+<Link className='text-lg text-gray-900 dark:text-gray-100' href="/">
 Contact us
 </Link>
     </li>

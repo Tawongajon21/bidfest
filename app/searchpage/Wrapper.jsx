@@ -156,7 +156,7 @@ console.log(userBids);
     }} className="bg-white p-6 rounded shadow-lg w-[90%] max-w-md z-9999999">
 <p className='flex items-center content-center justify-between'>
     <p>
-    <h2 className="text-2xl font-semibold mb-4">
+    <h2 className="text-2xl font-semibold mb-4 dark:text-black">
 Advanced Search
 </h2>
     </p>
@@ -174,24 +174,24 @@ Advanced Search
     <p className='flex justify-between align-middle content-center'>
 
 <p className='w-full'>
-    <label htmlFor="">
+    <label htmlFor="" className="dark:text-black">
        Item Name
     </label>
  
-    <input  type='text' onChange={(e)=>setPropertyName(e.target.value)}  placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
+    <input  type='text' onChange={(e)=>setPropertyName(e.target.value)}  placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900 dark:text-black'/>
 
     </p>
     </p>
     <p className='flex justify-between align-middle content-center'>
 
 <p className='w-full'>
-    <label htmlFor="">
+    <label htmlFor=""  className="dark:text-black">
        Item Type
     </label>
  <select name="" id="" onChange={(e)=>{
     e.preventDefault()
     setitemType(e.target.value)
-    }} className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'>
+    }} className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900 dark:text-black'>
 {
     itemTypes.map((item)=>(
 <option value={item}>{item}</option>
@@ -208,22 +208,22 @@ Advanced Search
     <p className='flex justify-between align-middle content-center'>
 
 <p className='w-full'>
-    <label htmlFor="">
+    <label htmlFor="" className="dark:text-black">
        Minimmum Price
     </label>
  
-    <input onChange={(e)=>setMinPrice(e.target.value)}  type='number'   placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
+    <input onChange={(e)=>setMinPrice(e.target.value)}  type='number'   placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900 dark:text-black'/>
 
     </p>
     </p>
     <p className='flex justify-between align-middle content-center'>
 
 <p className='w-full'>
-    <label htmlFor="">
+    <label htmlFor="" className="dark:text-black">
         Maximum Price
     </label>
  
-    <input  type='number'  onChange={(e)=>setMaxPrice(e.target.value)}    placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md'/>
+    <input  type='number'  onChange={(e)=>setMaxPrice(e.target.value)}    placeholder='' className='w-full pl-1 pr-1 py-2 border mb-2 border-gray-500 focus:border-blue-500 focus:ring-blue-500 focus:outline-none rounded-md dark:border-gray-900 dark:text-black'/>
 
     </p>
     </p>
@@ -268,7 +268,7 @@ Search
       }     
 <div className=' flex justify-center mt-4 flex-wrap'>
     <form onSubmit={handleSearch}>
-        <input onChange={(e)=>setsearchTerm(e.target.value)} type="text"  placeholder='Type your search here' className='w-80 md:w-120 py-2 border-black border-2 placeholder:text-1.5xl text-left pl-2'/>
+        <input onChange={(e)=>setsearchTerm(e.target.value)} type="text"  placeholder='Type your search here' className='w-80 md:w-120 py-2 border-black border-2 placeholder:text-1.5xl text-left pl-2 dark:border-white dark:border-2 dark:placeholder-white'/>
         <p className='grid align-center justify-center gap-3 md:flex align-center  mt-2 font-bold '>
             <button type="button" className='underline text-[18px]  cursor-pointer' onClick={()=>setopenAdvancedSearch(!openAdvancedSearch)}>
                 Switch to advanced search
@@ -303,7 +303,9 @@ setsubmittedSearch((prev)=>(
 console.log(vehicleType);
 */
 
-}} key={cat}  className={`flex-1 min-w-[100px] border-1 px-4  min-h-[48px] bg-black  ${itemType === cat &&  "bg-[#4f46e5]"}     text-white cursor-pointer `}>
+}} key={cat}  className={`flex-1 min-w-[100px] border-1 px-4  min-h-[48px] bg-black  ${itemType === cat &&  "bg-[#4f46e5]"}     text-white cursor-pointer    dark:bg-gray-800/30 dark:backdrop-blur-sm dark:border-gray-700/50 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-indigo-600/20
+               dark:hover:border-indigo-500/50 dark:hover:text-white
+               dark:hover:shadow-lg dark:hover:shadow-indigo-500/30`}>
 {cat}
 </button>
 ))
