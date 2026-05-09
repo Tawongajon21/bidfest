@@ -28,7 +28,7 @@ function MarketingHero() {
 console.log(data);
   return (
     <>
-       <div className='h-120 bg-cover bg-center bg-no-repeat  z-100' >
+       <div className='h-120 sm:h-120 md:h-120  bg-cover bg-center bg-no-repeat  z-100' >
     <div className="absolute left-0 w-full h-full " 
     style={{
         background:"linear-gradient(to right,#fff, #e5f2ff",
@@ -59,14 +59,14 @@ console.log(data);
 <p className='px-15 flex justify-center'> 
 <Link href="/searchpage" style={{
         backgroundColor:"#4f46e5"
-     }} className=' text-white px-15  z-100   py-2 mt-4 tracking-wide rounded-md cursor-pointer '>
+     }} className=' text-white px-8  z-100   py-2 mt-4 tracking-wide rounded-md cursor-pointer md:px-15 sm:px-10'>
     Let's Go Bidding
 </Link>
 
 </p>
 
     </div>
-    <div className='hidden md:block'>
+    <div className='hidden md:block '>
         <Image src={BgImage} width={500} height={500} alt='Background Image'/>
     </div>
    
