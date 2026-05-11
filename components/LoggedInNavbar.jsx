@@ -6,7 +6,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {AiOutlineMenu} from "react-icons/ai"
 import {MdClose} from "react-icons/md"
-import useSession from "@/middleware/useSession"
+
+import { useSession } from "@/middleware/useSession"
 import { useState,useEffect,useRef } from 'react'
 import {FaSearch,FaBell,FaGavel,FaArrowDown} from "react-icons/fa"
 import {FiX} from "react-icons/fi"
@@ -138,13 +139,20 @@ const toggleNotifications=()=>{
 }
   
 let unreadNotifications=serverData.data;
+/*
 const {mutate:markRead}=useMutation(markNotificationRead,{
     onSuccess:()=>{
         queryClient.invalidateQueries("notifications")
     }
 })
+*/
 
-
+const {mutate: markRead} = useMutation({
+    mutationFn: markNotificationRead,
+    onSuccess: () => {
+        queryClient.invalidateQueries({queryKey: ["notifications"]})
+    }
+})
 
   return (
 

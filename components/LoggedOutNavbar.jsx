@@ -1,28 +1,13 @@
 
 'use client'
 import React from 'react'
-import Logo from "../public/images/logo.svg"
+
 import Image from 'next/image'
 import Link from 'next/link'
 import {AiOutlineMenu} from "react-icons/ai"
 import {MdClose} from "react-icons/md"
-import useSession from "@/middleware/useSession"
-import { useState,useEffect,useRef } from 'react'
-import {FaSearch,FaBell,FaGavel,FaArrowDown} from "react-icons/fa"
-import {FiX} from "react-icons/fi"
-import {HiChevronDown} from "react-icons/hi"
-import  {io}  from 'socket.io-client'
-import {IoNotificationsOutline,IoSearchOutline} from "react-icons/io5"
-import { serverUrl } from '@/urls'
-import useSocket from "../hooks/useSocket"
-import CarBg from "@/public/images/car-bg.png";
-import  {fetchNotifications}  from "../helpers/fetchNotifications";
-import {markNotificationRead} from "../helpers/markAsRead"
-import {imageServerUrl} from "@/urls"
-import { useQuery, useQueryClient,useMutation } from "@tanstack/react-query";
-import timeAgo from "@/helpers/timeAgo"
-import EmptyNotification from "@/public/images/empty-notifications.png"
-import useNotifications from "@/helpers/useUnreadNotifications"
+import { useState } from 'react'
+
 export default function LoggedOutNavbar({session}) {
 
 

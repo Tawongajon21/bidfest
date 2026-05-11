@@ -1,22 +1,19 @@
-
-"use client"
+'use client'
 import React from 'react'
 import { usePathname } from 'next/navigation'
-import Navbar from '@/components/navbar';
-import Login from "@/app/(auth)/login/page"
-import Register from "@/app/(auth)/register/page"
-function CheckPathway({children}) {
-    const pathname=usePathname();
+import Navbar from '@/components/navbar'
+
+function CheckPathway({ children }) {
+  const pathname = usePathname();
+
+  // Don't show Navbar on login/register pages
+  const hideNavbar = pathname === '/login' || pathname === '/register';
 
   return (
-
-    pathname === "/login" ? <Login/> : pathname === "/register" ? <Register/> : 
-    
     <>
-    <Navbar/>
-{children}
+      {!hideNavbar && <Navbar />}
+      {children}
     </>
- 
   )
 }
 
