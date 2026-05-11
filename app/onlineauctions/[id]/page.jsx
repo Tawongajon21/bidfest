@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import  {fetchLots}  from "../../../helpers/fetchLots";
 import {use} from "react"
 import { useRouter } from 'next/router';
-import useSession from "@/middleware/useSession"
+import {useSession} from "../../../middleware/useSession"
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { useRef,useState } from 'react';

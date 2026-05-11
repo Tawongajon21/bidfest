@@ -1,7 +1,7 @@
 "use client"
 import { useState,useEffect } from "react";
 import { useQuery,useQueryClient,useMutation} from "@tanstack/react-query";
-export const getSessionFromToken=(token)=>{
+export  const getSessionFromToken=(token)=>{
 const payload= JSON.parse(atob(token.split(".")[1]));
 return {token,payload}
 }

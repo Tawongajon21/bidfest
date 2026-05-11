@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+  
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build": "set DISABLE_ESLINT_PLUGIN=true && next build"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.100.9",

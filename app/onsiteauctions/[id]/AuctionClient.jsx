@@ -3,7 +3,7 @@
 import React from 'react'
 
 import AuctionCard from "./AuctionCard"
-import useSession from "@/middleware/useSession"
+import {useSession} from "../../../middleware/useSession"
 function AuctionClient({data,userBids,previousPathName}) {
   const {session}=useSession();
   let signature=session?.signature

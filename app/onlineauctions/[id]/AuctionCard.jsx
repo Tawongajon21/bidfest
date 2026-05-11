@@ -6,7 +6,8 @@ import {AiFillStar} from "react-icons/ai"
 import {BiChair,BiCar,BiCalendar} from "react-icons/bi"
 import {BsCarFront,BsSpeedometer} from "react-icons/bs"
 import {FaDoorOpen,FaPerson} from "react-icons/fa6"
-import useSession from "@/middleware/useSession"
+import {useSession} from "../../../middleware/useSession"
+
 import {FaCar,FaRev,FaGasPump,FaGavel,FaSignOutAlt,FaCalculator,FaInfo} from "react-icons/fa"
 import { FiX } from 'react-icons/fi'
 import { useMutation,useQueryClient, useQuery,useQueries } from '@tanstack/react-query'
